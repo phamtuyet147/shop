@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<appSQL xmlns="http://linhnv.xyz/app.sql">
+    <getArticles>
+        SELECT * FROM `articles`
+    </getArticles>
+    <getArticleByLink>
+        SELECT * FROM `articles` WHERE link=? LIMIT 1
+    </getArticleByLink>
+    <addArticle>
+        INSERT INTO `articles`(`title`, `content`, `author`, `dt_created`, `dt_modified`, `link`)
+        VALUES(?,?,?,?,?,?)
+    </addArticle>
+</appSQL>

@@ -1,0 +1,284 @@
+@charset "utf-8";
+
+body{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12pt;
+    cursor: default;
+    color: #333;
+}
+
+header{
+    margin: 0;
+    width: 100%;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+footer{
+    background: #333;
+    color: #fff;
+    margin: 0;
+    bottom: 0;
+    text-align: center;
+    padding: 5px 10px;
+}
+
+.nav-bar{
+    width: 100%;
+    margin: 0;
+    background: #333;
+    padding-right: 2%;
+    text-align: right;
+}
+
+.logo{
+    float: left;
+}
+
+.nav{
+    margin: 0 1px;
+    display: inline-block;
+}
+
+.nav a{
+    padding: 10px 20px;
+    color: #fff;
+    display: block;
+    text-decoration: none;
+}
+
+.nav a:hover{
+    background: #4b4b4b;
+}
+
+.container{
+    padding: 10px 2%;
+    background-color: #f4f4f4;
+}
+
+.article{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-height: 20px;
+    max-height: 100px;
+}
+
+.width-5{
+    width: 10%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.width-10{
+    width: 10%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.width-20{
+    width: 20%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.width-30{
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.width-40{
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.width-50{
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.width-60{
+    width: 60%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.width-70{
+    width: 70%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.width-80{
+    width: 80%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.width-90{
+    width: 90%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.width-100{
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.form{
+    margin: 5px 0;
+    padding: 10px 2%;
+    width: 100%;
+}
+
+.input-group{
+    margin: 5px 0;
+    width: 100%;
+    display: block;
+}
+
+.label{
+    padding: 10px 15px;
+    display: block;
+    width: 100%;
+}
+
+.input{
+    padding: 10px 15px;
+    border-radius: 3px;
+    border: solid #ddd 1px;
+    display: block;
+    width: 100%;
+}
+
+.input-group-inline{
+    display: inline-block;
+}
+
+.input-group-inline .label{
+    display: inline-block;
+}
+
+.input-group-inline .content{
+    display: inline-block;
+}
+
+.button{
+    border-radius: 3px;
+    padding: 10px 15px;
+    border: none;
+    background: #1874cb;
+    color: #fff;
+    cursor: pointer;
+    margin: 2px 2px;
+    text-decoration: none;
+}
+
+.button:hover{
+    background: #189aff;
+}
+
+.button-orange{
+    background: #ff8902;
+}
+
+.button-orange:hover{
+    background: #ffa726;
+}
+
+.button-white{
+    background: #f0f0f2;
+    border: solid 1px #ddd;
+    color: #333;
+}
+
+.button-white:hover{
+    background: #e3e3e5;
+}
+
+.button-block{
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.message{
+    width: 100%;
+    padding: 10px 20px;
+    border: solid #ddd 1px;
+    background: #fafafa;
+    border-radius: 5px;
+}
+
+.message-error{
+    border: solid #ff8280 1px;
+    background: #ffd7d8;
+}
+
+.message-success{
+    border: solid #4ed273 1px;
+    background: #b1ffce;
+}
+
+.box{
+    width: 100%;
+    margin: 5px 0;
+    border: solid #ddd 1px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.box .box-heading{
+    background: #dcdcdc;
+    padding: 10px 20px;
+    display: block;
+}
+
+.box .box-body{
+    padding: 20px 25px;
+}
+
+.image-resize{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.image-circle{
+    border-radius: 100%;
+}
+
+.quote-text{
+    font-size: 14pt;
+    font-style: italic;
+}
+
+.quote-text:before{
+    content: "\"";
+}
+
+.quote-text:after{
+    content: "\"";
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<appMapping xmlns="http://linhnv.xyz/app.mapping">
+    <controller>
+        <pattern>/register</pattern>
+        <action>apps\blog\controller\Register</action>
+    </controller>
+</appMapping>

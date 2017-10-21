@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<forms xmlns="http://linhnv.xyz/forms">
+    <loginForm>
+        <username>
+            <condition>required</condition>
+            <msg>username.required</msg>
+        </username>
+        <password>
+            <condition>required,password,match</condition>
+            <msg for="required">password.required</msg>
+            <msg for="match">
+                <flag>Field 1</flag>
+                <flag>Field 2</flag>
+            </msg>
+            <arguments for="match">repeat_password</arguments>
+        </password>
+    </loginForm>
+</forms>

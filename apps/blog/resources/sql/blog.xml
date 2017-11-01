@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <appSQL xmlns="http://linhnv.xyz/app.sql">
     <getArticles>
-        SELECT * FROM `articles`
+        SELECT * FROM `articles` WHERE :condition
     </getArticles>
     <getArticleByLink>
         SELECT * FROM `articles` WHERE link=? LIMIT 1

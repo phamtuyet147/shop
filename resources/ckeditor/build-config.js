@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -13,10 +13,10 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) http://ckeditor.com/builder/1d7725c4b7f7c89b0edc83045b3231c6
+ * (2) http://ckeditor.com/builder/8bb71089388efed7af911c74d09be77f
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) http://ckeditor.com/builder/download/1d7725c4b7f7c89b0edc83045b3231c6
+ * (3) http://ckeditor.com/builder/download/8bb71089388efed7af911c74d09be77f
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -25,71 +25,74 @@
  */
 
 var CKBUILDER_CONFIG = {
-	skin: 'moono',
+	skin: 'moono-lisa',
 	preset: 'basic',
 	ignore: [
-		'.bender',
-		'bender.js',
-		'bender-err.log',
-		'bender-out.log',
-		'dev',
 		'.DS_Store',
+		'.bender',
 		'.editorconfig',
 		'.gitattributes',
 		'.gitignore',
-		'gruntfile.js',
 		'.idea',
 		'.jscsrc',
 		'.jshintignore',
 		'.jshintrc',
-		'less',
 		'.mailmap',
+		'.travis.yml',
+		'bender-err.log',
+		'bender-out.log',
+		'bender.ci.js',
+		'bender.js',
+		'dev',
+		'gruntfile.js',
+		'less',
 		'node_modules',
 		'package.json',
-		'README.md',
 		'tests'
 	],
 	plugins : {
-		'autolink' : 1,
-		'autosave' : 1,
-		'backup' : 1,
+		'about' : 1,
+		'autocorrect' : 1,
+		'autogrow' : 1,
 		'base64image' : 1,
 		'basicstyles' : 1,
-		'brclear' : 1,
-		'chart' : 1,
+		'blockquote' : 1,
+		'bootstrapTabs' : 1,
+		'bt_table' : 1,
+		'btquicktable' : 1,
+		'ckeditortablecellsselection' : 1,
 		'clipboard' : 1,
 		'colorbutton' : 1,
 		'colordialog' : 1,
-		'contextmenu' : 1,
-		'elementspath' : 1,
+		'copyformatting' : 1,
+		'docfont' : 1,
 		'enterkey' : 1,
 		'entities' : 1,
-		'eqneditor' : 1,
 		'find' : 1,
 		'floating-tools' : 1,
 		'floatingspace' : 1,
-		'font' : 1,
 		'format' : 1,
-		'imageresize' : 1,
-		'imagerotate' : 1,
 		'indentlist' : 1,
 		'justify' : 1,
 		'lineheight' : 1,
 		'link' : 1,
 		'list' : 1,
 		'liststyle' : 1,
-		'oembed' : 1,
 		'pastebase64' : 1,
+		'pastecode' : 1,
+		'pastefromexcel' : 1,
 		'pastefromword' : 1,
 		'pastetext' : 1,
+		'pbckcode' : 1,
 		'quicktable' : 1,
 		'removeformat' : 1,
 		'resize' : 1,
-		'stat' : 1,
-		'symbol' : 1,
-		'tab' : 1,
 		'tableresize' : 1,
+		'tableresizerowandcolumn' : 1,
+		'tableselection' : 1,
+		'tablesorter' : 1,
 		'texttransform' : 1,
+		'toc' : 1,
 		'toolbar' : 1,
 		'undo' : 1,
 		'wysiwygarea' : 1

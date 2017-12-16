@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://linhnv.xyz/app.view_config">
+
+    <xs:element name="viewConfig" type="viewConfigType"/>
+
+    <xs:complexType name="viewConfigType">
+        <xs:sequence>
+            <xs:element type="layoutsType" name="layouts"/>
+            <xs:element type="viewsType" name="views"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="layoutType">
+        <xs:sequence>
+            <xs:element type="partType" name="part" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="name" use="required"/>
+        <xs:attribute type="xs:string" name="layout" use="required"/>
+        <xs:attribute type="xs:string" name="extend"/>
+    </xs:complexType>
+
+    <xs:complexType name="partType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="file" use="required"/>
+                <xs:attribute type="xs:string" name="name" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="viewsType">
+        <xs:sequence>
+            <xs:element type="viewType" maxOccurs="unbounded" name="view"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="viewType">
+        <xs:sequence>
+            <xs:element name="part" type="partType" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="action" use="required"/>
+        <xs:attribute type="xs:string" name="layout" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="layoutsType">
+        <xs:sequence>
+            <xs:element type="layoutType" name="layout"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

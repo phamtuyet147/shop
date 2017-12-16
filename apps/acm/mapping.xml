@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<appMapping xmlns="http://linhnv.xyz/app.mapping">
+
+    <route>
+        <pattern>/admin/*</pattern>
+        <route>apps/acm/admin/routing.xml</route>
+    </route>
+
+    <controller>
+        <pattern>/*.view</pattern>
+        <action>core\app\AppView</action>
+    </controller>
+
+    <controller>
+        <pattern>/</pattern>
+        <action>apps\acm\controller\basic\Home</action>
+        <views>
+            <view on="success" action="Home.view"/>
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/admin</pattern>
+        <action>apps\acm\controller\admin\Home</action>
+        <views>
+            <view on="success" action="AdminHome.view"/>
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/contest/info</pattern>
+        <action>apps\acm\controller\basic\ViewContestInfo</action>
+        <views>
+            <view on="success" action="Contest.view"/>
+        </views>
+    </controller>
+
+</appMapping>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://linhnv.xyz/app.configuration"
+           xmlns="http://linhnv.xyz/app.configuration"
+           elementFormDefault="qualified">
+
+    <xs:element name="appSetting" type="settingFields"/>
+
+    <xs:complexType name="settingFields">
+        <xs:all>
+            <xs:element name="developer" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="resources" type="xs:string" minOccurs="0"/>
+            <xs:element name="defaultLanguage" type="xs:string"/>
+            <xs:element name="connection" type="connectInfo"/>
+            <xs:element name="directory" type="directoryType"/>
+            <xs:element name="hash" type="hashInfo"/>
+            <xs:element name="fwConfig" type="framework" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="connectInfo">
+        <xs:all>
+            <xs:element name="hostname" type="xs:string"/>
+            <xs:element name="port" type="xs:string" minOccurs="0"/>
+            <xs:element name="databaseName" type="xs:string"/>
+            <xs:element name="username" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="hashType" minOccurs="0" default="null" type="xs:string"/>
+            <xs:element name="engine" type="databaseEngine" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="directoryType">
+        <xs:all>
+            <xs:element name="resources" type="xs:string"/>
+            <xs:element name="properties" type="xs:string"/>
+            <xs:element name="language" type="xs:string"/>
+            <xs:element name="sql" type="xs:string"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="hashInfo">
+        <xs:sequence>
+            <xs:element name="prefix" type="xs:string"/>
+            <xs:element name="defaultHashType" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="databaseEngine">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="mysqli"/>
+            <xs:enumeration value="PDO"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="framework">
+        <xs:sequence>
+            <xs:element name="asteriskRouteOpenTag" type="xs:string"/>
+            <xs:element name="asteriskRouteCloseTag" type="xs:string"/>
+            <xs:element name="shortTag" type="shortTag"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="shortTag">
+        <xs:sequence>
+            <xs:element name="prefix" type="xs:string"/>
+            <xs:element name="link" type="xs:string"/>
+            <xs:element name="date" type="xs:string"/>
+            <xs:element name="datetime" type="xs:string"/>
+            <xs:element name="list" type="xs:string"/>
+            <xs:element name="text" type="xs:string"/>
+            <xs:element name="msg" type="xs:string"/>
+            <xs:element name="var" type="xs:string"/>
+            <xs:element name="form" type="xs:string"/>
+            <xs:element name="function" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

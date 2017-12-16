@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wValidator xmlns="http://linhnv.xyz/w.validator">
+
+    <rule>
+        <key>phone</key>
+        <pattern>/^\+?[0-9]{10,12}$/</pattern>
+    </rule>
+    <rule>
+        <key>email</key>
+        <pattern>/^[a-zA-Z0-9-_.]+@[a-zA-Z0-9-_.]+\.[a-z]{2,4}$/i</pattern>
+    </rule>
+    <rule>
+        <key>ip</key>
+        <pattern>/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gm</pattern>
+    </rule>
+
+</wValidator>

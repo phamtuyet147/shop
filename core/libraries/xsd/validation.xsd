@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified"
+           targetNamespace="http://linhnv.xyz/forms">
+    <xs:element xmlns:app="http://linhnv.xyz/forms" name="forms" type="app:forms"/>
+
+    <xs:complexType name="forms">
+        <xs:sequence>
+            <xs:element name="form" type="form" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="form">
+        <xs:sequence>
+            <xs:element name="field" type="field" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="field">
+        <xs:sequence>
+            <xs:element name="msg" type="message" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="args" type="arguments" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="condition" type="xs:string"/>
+        <xs:attribute name="type" type="fieldType"/>
+    </xs:complexType>
+
+    <xs:complexType name="message">
+        <xs:sequence>
+            <xs:element name="flag" type="messageFlag" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="text" type="xs:string"/>
+        <xs:attribute name="for" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="messageFlag">
+        <xs:attribute name="id" type="xs:integer" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="arguments">
+        <xs:sequence>
+            <xs:element name="flag" type="argumentFlag" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="for" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="argumentFlag">
+        <xs:attribute name="id" type="xs:integer" use="required"/>
+    </xs:complexType>
+
+    <xs:simpleType name="fieldType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="string"/>
+            <xs:enumeration value="integer"/>
+            <xs:enumeration value="date"/>
+            <xs:enumeration value="datetime"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

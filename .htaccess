@@ -1,0 +1,21 @@
+Options -Indexes +FollowSymLinks -MultiViews
+# Turn mod_rewrite on
+RewriteEngine On
+RewriteBase /
+RewriteCond %{ENV:REDIRECT_STATUS} 200
+RewriteRule .* - [L]
+RewriteCond %{HTTP_HOST} ^www.(.+) [NC]
+RewriteRule ^(.*) http://%1/$1 [R=301,NE,L]
+RewriteCond %{REQUEST_URI} !(resources)
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
+
+# STRONG HTACCESS PROTECTION
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+    order allow,deny
+    deny from all
+    satisfy all
+</Files>
+
+<FilesMatch "\.(jpg|png|bmp|gif|css|js|svg|ico)$">
+    Header set Cache-Control "public, max-age=3600"
+</FilesMatch>

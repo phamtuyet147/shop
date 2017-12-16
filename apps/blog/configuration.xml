@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<appSetting xmlns="http://linhnv.xyz/app.configuration">
+
+    <developer>true</developer>
+    <defaultLanguage>vi_VN</defaultLanguage>
+
+    <connection>
+        <hostname>localhost</hostname>
+        <databaseName>blog</databaseName>
+        <username>blog</username>
+        <password>123456</password>
+        <hashType>md5</hashType>
+    </connection>
+
+    <directory>
+        <resources>resources</resources>
+        <properties>properties</properties>
+        <language>resources/lang</language>
+        <sql>resources/sql</sql>
+    </directory>
+
+    <hash>
+        <prefix>wblog</prefix>
+        <defaultHashType>crypt</defaultHashType>
+    </hash>
+
+    <fwConfig>
+        <asteriskRouteOpenTag>article</asteriskRouteOpenTag>
+        <asteriskRouteCloseTag>wsource</asteriskRouteCloseTag>
+        <shortTag>
+            <prefix>ww</prefix>
+            <link>l</link>
+            <date>d</date>
+            <datetime>dt</datetime>
+            <list>ls</list>
+            <text>txt</text>
+            <msg>m</msg>
+            <var>v</var>
+            <form>f</form>
+            <function>fn</function>
+        </shortTag>
+    </fwConfig>
+
+</appSetting>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://linhnv.xyz/w.validator"
+           xmlns="http://linhnv.xyz/w.validator"
+           elementFormDefault="qualified">
+
+    <xs:element name="wValidator" type="validator"/>
+
+    <xs:complexType name="validator">
+        <xs:sequence>
+            <xs:element name="rule" type="rule" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="rule">
+        <xs:sequence>
+            <xs:element name="key" type="xs:string"/>
+            <xs:element name="pattern" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

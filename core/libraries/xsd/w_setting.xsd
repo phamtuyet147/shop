@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://linhnv.xyz/w.setting"
+           xmlns="http://linhnv.xyz/w.setting"
+           elementFormDefault="qualified">
+
+    <xs:element name="siteSetting" type="settingFields"/>
+
+    <xs:complexType name="settingFields">
+        <xs:sequence>
+            <xs:element name="cacheEngine" type="cache" minOccurs="0"/>
+            <xs:element name="app" type="appList" maxOccurs="unbounded"/>
+            <xs:element name="defaultApp" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="cache">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="memcache"/>
+            <xs:enumeration value="redis"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="appList">
+        <xs:sequence>
+            <xs:element name="appName" type="xs:string"/>
+            <xs:element name="domainName" type="xs:string"/>
+            <xs:element name="domainAlias" type="xs:string" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="ssl" type="xs:boolean"/>
+            <xs:element name="forceSSL" type="xs:boolean" default="false" minOccurs="0"/>
+            <xs:element name="appSetting" type="xs:string"/>
+            <xs:element name="appMapping" type="xs:string"/>
+            <xs:element name="appView" type="xs:string"/>
+            <xs:element name="appForm" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

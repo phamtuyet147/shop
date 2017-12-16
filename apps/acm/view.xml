@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewConfig xmlns="http://linhnv.xyz/app.view_config">
+
+    <layouts>
+
+        <layout name="MainTemplate" layout="/view/layout/basic/template.php">
+            <part file="/view/layout/basic/header.php" name="header"/>
+            <part file="/view/layout/blank.php" name="body"/>
+            <part file="/view/layout/basic/sidebar.php" name="sidebar"/>
+            <part file="/view/layout/basic/footer.php" name="footer"/>
+        </layout>
+
+        <layout name="AdminTemplate" layout="/view/layout/admin/template.php">
+            <part file="/view/layout/admin/header.php" name="header"/>
+            <part file="/view/layout/blank.php" name="body"/>
+            <part file="/view/layout/admin/footer.php" name="footer"/>
+        </layout>
+
+    </layouts>
+
+    <views>
+
+        <view action="Home.view" layout="MainTemplate">
+            <part file="/view/home.php" name="body"/>
+            <part file="/view/home_context/acm_index.html" name="acm_index"/>
+            <part file="/view/home_context/introduce.html" name="introduce"/>
+            <part file="/view/home_context/rule.html" name="rule"/>
+        </view>
+
+        <view action="AdminHome.view" layout="AdminTemplate">
+            <part file="/view/admin/home.php" name="body"/>
+        </view>
+
+        <view action="/admin/Contests.view" layout="AdminTemplate">
+            <part file="/view/admin/contest/index.php" name="body"/>
+        </view>
+
+        <view action="/admin/Contest.view" layout="AdminTemplate">
+            <part file="/view/admin/contest/update.php" name="body"/>
+        </view>
+
+        <view action="Contest.view" layout="MainTemplate">
+            <part file="/view/contest.php" name="body"/>
+        </view>
+
+    </views>
+
+</viewConfig>

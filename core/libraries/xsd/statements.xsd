@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://linhnv.xyz/app.sql"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="statements" type="app:appSQLType" xmlns:app="http://linhnv.xyz/app.sql"/>
+    <xs:complexType name="appSQLType">
+        <xs:sequence>
+            <xs:any processContents="skip" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

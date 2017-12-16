@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<forms xmlns="http://linhnv.xyz/forms">
+
+    <form name="UpdateArticle">
+        <field name="title" condition="required" type="string">
+            <msg for="required" text="Vui lòng nhập Tiêu đề"/>
+        </field>
+        <field name="content" condition="required">
+            <msg for="required" text="Vui lòng nhập Nội dung"/>
+        </field>
+    </form>
+
+    <form name="CreateLabel">
+        <field name="label" condition="required">
+            <msg for="required" text="Vui lòng nhập tên nhãn"/>
+        </field>
+    </form>
+
+</forms>

@@ -5,7 +5,7 @@
     <meta name="author" content="Sói Hoang"/>
     <title>{w:msg page.title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="alternate" href="<?= \core\utils\AppInfo::$BASE_URL ?>" hreflang="vi"/>
+    <link rel="alternate" href="" hreflang="vi"/>
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/resources/css/blog.css"/>

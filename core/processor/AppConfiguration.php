@@ -32,16 +32,20 @@ final class AppConfiguration
             'asteriskRouteOpenTag'  => 'article',
             'asteriskRouteCloseTag' => 'wsource',
             'shortTag'              => array(
-                'prefix'   => 'w',
-                'link'     => 'link',
-                'date'     => 'date',
-                'datetime' => 'datetime',
-                'list'     => 'list',
-                'text'     => 'text',
-                'msg'      => 'msg',
-                'var'      => 'var',
-                'form'     => 'form',
-                'function' => 'func'
+                'prefix'      => 'w',
+                'link'        => 'link',
+                'date'        => 'date',
+                'datetime'    => 'datetime',
+                'list'        => 'list',
+                'text'        => 'text',
+                'msg'         => 'msg',
+                'var'         => 'var',
+                'formData'    => 'formData',
+                'opsValue'    => 'opsValue',
+                'selectValue' => 'selectValue',
+                'formToken'   => 'frmToken',
+                'function'    => 'func',
+                'action'      => 'action'
             )
         );
 
@@ -78,6 +82,7 @@ final class AppConfiguration
         $absoluteAppDir = AppInfo::$BASE_PATH . DIRECTORY_SEPARATOR;
         /** @noinspection PhpUndefinedFieldInspection */
         if (empty($appConfig->directory)
+            || empty($appConfig->directory->cacheView)
             || empty($appConfig->directory->resources)
             || empty($appConfig->directory->properties)
             || empty($appConfig->directory->language)
@@ -94,6 +99,10 @@ final class AppConfiguration
         ) {
             throw new Exception('Configuration file is in wrong format');
         }
+
+        ViewConfig::setCachedViewDirectory(
+            $absoluteAppDir . (string)$appConfig->directory->cacheView
+        );
 
         Resources::setResourcesLocation(
             $absoluteAppDir . (string)$appConfig->directory->resources
@@ -169,45 +178,11 @@ final class AppConfiguration
                     = (string)$appConfig->fwConfig->asteriskRouteCloseTag;
             }
             if (!empty($appConfig->fwConfig->shortTag)) {
-                if (!empty($appConfig->fwConfig->shortTag->prefix)) {
-                    self::$FW_CONFIG['shortTag']['prefix']
-                        = (string)$appConfig->fwConfig->shortTag->prefix;
-                }
-                if (!empty($appConfig->fwConfig->shortTag->link)) {
-                    self::$FW_CONFIG['shortTag']['link']
-                        = (string)$appConfig->fwConfig->shortTag->link;
-                }
-                if (!empty($appConfig->fwConfig->shortTag->date)) {
-                    self::$FW_CONFIG['shortTag']['date']
-                        = (string)$appConfig->fwConfig->shortTag->date;
-                }
-                if (!empty($appConfig->fwConfig->shortTag->datetime)) {
-                    self::$FW_CONFIG['shortTag']['datetime']
-                        = (string)$appConfig->fwConfig->shortTag->datetime;
-                }
-                if (!empty($appConfig->fwConfig->shortTag->list)) {
-                    self::$FW_CONFIG['shortTag']['list']
-                        = (string)$appConfig->fwConfig->shortTag->list;
-                }
-                if (!empty($appConfig->fwConfig->shortTag->text)) {
-                    self::$FW_CONFIG['shortTag']['text']
-                        = (string)$appConfig->fwConfig->shortTag->text;
-                }
-                if (!empty($appConfig->fwConfig->shortTag->msg)) {
-                    self::$FW_CONFIG['shortTag']['msg']
-                        = (string)$appConfig->fwConfig->shortTag->msg;
-                }
-                if (!empty($appConfig->fwConfig->shortTag->var)) {
-                    self::$FW_CONFIG['shortTag']['var']
-                        = (string)$appConfig->fwConfig->shortTag->var;
-                }
-                if (!empty($appConfig->fwConfig->shortTag->form)) {
-                    self::$FW_CONFIG['shortTag']['form']
-                        = (string)$appConfig->fwConfig->shortTag->form;
-                }
-                if (!empty($appConfig->fwConfig->shortTag->function)) {
-                    self::$FW_CONFIG['shortTag']['function']
-                        = (string)$appConfig->fwConfig->shortTag->function;
+                foreach (self::$FW_CONFIG['shortTag'] as $shortTag) {
+                    if (!empty($appConfig->fwConfig->shortTag->$shortTag)) {
+                        self::$FW_CONFIG['shortTag'][$shortTag]
+                            = (string)$appConfig->fwConfig->shortTag->$shortTag;
+                    }
                 }
             }
         }

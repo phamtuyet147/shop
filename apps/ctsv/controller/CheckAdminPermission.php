@@ -9,9 +9,8 @@
 namespace apps\ctsv\controller;
 
 
-use apps\ctsv\Configuration;
 use apps\ctsv\object\User;
-use core\processor\AppFilter;
+use core\app\AppFilter;
 use core\processor\Filters;
 use core\utils\HTTPRequest;
 use core\utils\HTTPResponse;

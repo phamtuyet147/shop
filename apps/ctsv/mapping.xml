@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<appMapping xmlns="http://linhnv.xyz/app.mapping">
+
+    <filter>
+        <pattern>/*</pattern>
+        <action>\apps\ctsv\controller\auth\CheckLoginFilter</action>
+    </filter>
+
+    <filter>
+        <pattern>/quan-ly/*</pattern>
+        <action>\apps\ctsv\controller\CheckAdminPermission</action>
+    </filter>
+
+    <filter>
+        <pattern>/*</pattern>
+        <action>\core\app\FormValidationFilter</action>
+    </filter>
+
+    <controller>
+        <pattern>/*.view</pattern>
+        <action>core\app\AppView</action>
+    </controller>
+
+    <controller>
+        <pattern>/</pattern>
+        <action>\apps\ctsv\controller\HomeController</action>
+        <views>
+            <view action="Home.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/dang-nhap</pattern>
+        <action>\apps\ctsv\controller\ViewLoginController</action>
+        <views>
+            <view action="Login.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/VerifyUser.post</pattern>
+        <form>LoginForm</form>
+        <error>/dang-nhap</error>
+        <action>\apps\ctsv\controller\LoginController</action>
+        <views>
+            <view action="/dang-nhap" on="error" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/thoat</pattern>
+        <action>\apps\ctsv\controller\LogoutController</action>
+        <views>
+            <view action="/dang-nhap" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/bao-cao</pattern>
+        <action>\apps\ctsv\controller\user\report\ViewReportsController</action>
+        <views>
+            <view action="Reports.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/bao-cao/*</pattern>
+        <action>\apps\ctsv\controller\user\report\ViewReportController</action>
+        <views>
+            <view action="Report.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/xuat-bao-cao/*</pattern>
+        <action>\apps\ctsv\controller\user\report\ExportReportController</action>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly</pattern>
+        <action>\apps\ctsv\controller\admin\ViewAdminController</action>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly/bao-cao</pattern>
+        <action>\apps\ctsv\controller\admin\report\ViewReportsController</action>
+        <views>
+            <view action="admin/Reports.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly/truong</pattern>
+        <action>\apps\ctsv\controller\admin\school\ViewSchoolsController</action>
+        <views>
+            <view action="admin/Schools.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly/tao-bao-cao</pattern>
+        <action>\apps\ctsv\controller\admin\report\ViewCreateReportController</action>
+        <views>
+            <view action="admin/CreateReport.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly/bao-cao/*</pattern>
+        <action>\apps\ctsv\controller\admin\report\ViewUpdateReportController</action>
+        <views>
+            <view action="admin/UpdateReport.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly/nam-bao-cao</pattern>
+        <action>\apps\ctsv\controller\admin\year\ViewYearsController</action>
+        <views>
+            <view action="admin/Years.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly/tai-khoan</pattern>
+        <action>\apps\ctsv\controller\admin\account\ViewAccountsController</action>
+        <views>
+            <view action="admin/Users.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly/mau-bao-cao</pattern>
+        <action>\apps\ctsv\controller\admin\template\ViewTemplatesController</action>
+        <views>
+            <view action="admin/Templates.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly/mau-bao-cao/*</pattern>
+        <action>\apps\ctsv\controller\admin\template\ViewUpdateTemplateController</action>
+        <views>
+            <view action="admin/UpdateTemplate.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly/tao-mau-bao-cao</pattern>
+        <action>\apps\ctsv\controller\admin\template\ViewUpdateTemplateController</action>
+        <views>
+            <view action="admin/UpdateTemplate.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly/tao-tai-khoan</pattern>
+        <action>\apps\ctsv\controller\admin\account\ViewUpdateAccountController</action>
+        <views>
+            <view action="admin/UpdateUser.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/quan-ly/tai-khoan/*</pattern>
+        <action>\apps\ctsv\controller\admin\account\ViewUpdateAccountController</action>
+        <views>
+            <view action="admin/UpdateUser.view" on="success" />
+        </views>
+    </controller>
+
+    <controller>
+        <pattern>/UpdateSetting.post</pattern>
+        <action>\apps\ctsv\controller\user\UpdateSettingController</action>
+    </controller>
+
+    <controller>
+        <pattern>/UpdateReportValues.post</pattern>
+        <action>\apps\ctsv\controller\user\report\UpdateReportValuesController</action>
+    </controller>
+
+</appMapping>

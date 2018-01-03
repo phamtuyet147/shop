@@ -6,8 +6,8 @@
 
     <connection>
         <hostname>localhost</hostname>
-        <databaseName>blog</databaseName>
-        <username>blog</username>
+        <databaseName>ctsv</databaseName>
+        <username>ctsv</username>
         <password>123456</password>
         <hashType>md5</hashType>
     </connection>
@@ -21,8 +21,8 @@
     </directory>
 
     <hash>
-        <prefix>wblog</prefix>
-        <defaultHashType>crypt</defaultHashType>
+        <prefix>ctsv</prefix>
+        <defaultHashType>md5</defaultHashType>
     </hash>
 
 </appSetting>

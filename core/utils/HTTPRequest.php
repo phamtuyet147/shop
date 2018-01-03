@@ -197,6 +197,15 @@ final class HTTPRequest
         $_FILES = array();
     }
 
+    public static function setRequestMethod($flag = true)
+    {
+        if ($flag) {
+            $_SERVER['REQUEST_METHOD'] = 'GET';
+        } else {
+            $_SERVER['REQUEST_METHOD'] = 'POST';
+        }
+    }
+
     /**
      *
      */

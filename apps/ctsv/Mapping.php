@@ -15,7 +15,7 @@ class Mapping extends AppMapping
 {
     protected static $FILTERS
         = Array(
-            '/*'         => 'apps\ctsv\controller\CheckLoginFilter',
+            '/*'         => 'apps\ctsv\controller\auth\CheckLoginFilter',
             '/quan-ly/*' => 'apps\ctsv\controller\CheckAdminPermission',
         );
     protected static $CONTROLLERS

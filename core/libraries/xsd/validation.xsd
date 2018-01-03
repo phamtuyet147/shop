@@ -22,8 +22,8 @@
             <xs:element name="args" type="arguments" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="name" type="xs:string" use="required"/>
-        <xs:attribute name="condition" type="xs:string"/>
-        <xs:attribute name="type" type="fieldType"/>
+        <xs:attribute name="condition" type="xs:string" use="required"/>
+        <xs:attribute name="recover" type="xs:boolean"/>
     </xs:complexType>
 
     <xs:complexType name="message">
@@ -48,14 +48,5 @@
     <xs:complexType name="argumentFlag">
         <xs:attribute name="id" type="xs:integer" use="required"/>
     </xs:complexType>
-
-    <xs:simpleType name="fieldType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="string"/>
-            <xs:enumeration value="integer"/>
-            <xs:enumeration value="date"/>
-            <xs:enumeration value="datetime"/>
-        </xs:restriction>
-    </xs:simpleType>
 
 </xs:schema>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <forms xmlns="http://linhnv.xyz/forms">
 
-    <form name="UpdateArticle">
-        <field name="title" condition="required" type="string">
+    <form name="TestForm">
+        <field name="field1" condition="phone" recover="false">
             <msg for="required" text="Vui lòng nhập Tiêu đề"/>
         </field>
-        <field name="content" condition="required">
+        <field name="field2" condition="required">
             <msg for="required" text="Vui lòng nhập Nội dung"/>
         </field>
     </form>

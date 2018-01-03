@@ -36,9 +36,8 @@ final class FileUtils
      * @return SimpleXMLElement
      */
     public static function mergeXMLObject(SimpleXMLElement $source = null,
-                                          SimpleXMLElement $destination = null
-    )
-    {
+        SimpleXMLElement $destination = null
+    ) {
         if (!empty($source)) {
             $dom1 = new DomDocument();
             $dom2 = new DomDocument();
@@ -66,12 +65,14 @@ final class FileUtils
     }
 
     /**
-     * @param $filePath
+     * @param        $filePath
      * @param string $namespacePrefix
+     *
      * @return SimpleXMLElement
      */
-    public static function readXMLFile($filePath, $namespacePrefix = self::DEFAULT_NS_PREFIX)
-    {
+    public static function readXMLFile($filePath,
+        $namespacePrefix = self::DEFAULT_NS_PREFIX
+    ) {
         try {
             if (!file_exists($filePath)) {
                 throw new Exception('Could not find file: ' . $filePath);
@@ -100,14 +101,16 @@ final class FileUtils
     }
 
     /**
-     * @param $files
-     * @param $rootName
+     * @param        $files
+     * @param        $rootName
      * @param string $directory
+     *
      * @return SimpleXMLElement
      * @throws Exception
      */
-    public static function readMultipleXMLFile($files, $rootName, $directory = W_APPS)
-    {
+    public static function readMultipleXMLFile($files, $rootName,
+        $directory = W_APPS
+    ) {
         $dom = new DOMDocument();
         $dom->appendChild($dom->createElement($rootName));
 
@@ -122,7 +125,7 @@ final class FileUtils
             if ($addDom->documentElement) {
                 foreach ($addDom->documentElement->childNodes as $node) {
                     $dom->documentElement->appendChild(
-                        $dom->importNode($node, TRUE)
+                        $dom->importNode($node, true)
                     );
                 }
             }
@@ -134,6 +137,7 @@ final class FileUtils
 
     /**
      * @param $filePath
+     *
      * @return array
      */
     public static function getSQLFileContent($filePath)
@@ -267,9 +271,8 @@ final class FileUtils
      * @return bool
      */
     public static function checkFileType(array $file, array $extensionsAllowed,
-                                         array $typeAllowed
-    )
-    {
+        array $typeAllowed
+    ) {
         $name = $file['name'];
         $fileNameExploded = explode('.', $name);
         $ext = end($fileNameExploded);
@@ -281,5 +284,31 @@ final class FileUtils
         }
 
         return true;
+    }
+
+    /**
+     * @param $content
+     * @param $path
+     */
+    public static function writeTruncateFile($content, $path)
+    {
+        try {
+            $dir = explode(DIRECTORY_SEPARATOR, $path);
+            array_pop($dir);
+            $dir = implode(DIRECTORY_SEPARATOR, $dir);
+            if (!file_exists($dir)) {
+                if (!mkdir($dir, 0755, true)) {
+                    throw new Exception('Could not create dir: ' . $dir);
+                }
+            }
+            $f = fopen($path, 'w+');
+            if (!$f) {
+                throw new Exception('Could not write file: ' . $path);
+            }
+            fwrite($f, $content);
+            fclose($f);
+        } catch (Exception $e) {
+            exit('Caught Exception: ' . $e->getMessage());
+        }
     }
 }

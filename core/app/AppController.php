@@ -17,16 +17,26 @@ interface AppController
     /**
      * Controller constructor.
      *
-     * @param HTTPRequest $request
+     * @param HTTPRequest  $request
      * @param HTTPResponse $response
      */
     public function __construct(HTTPRequest $request, HTTPResponse $response);
 
     /**
-     * @param HTTPRequest $request
+     * @param HTTPRequest  $request
      * @param HTTPResponse $response
-     * @param AppView $appView
-     *
+     * @param AppView      $appView
      */
-    public function execute(HTTPRequest $request, HTTPResponse $response, AppView $appView);
+    public function doGet(HTTPRequest $request, HTTPResponse $response,
+        AppView $appView
+    );
+
+    /**
+     * @param HTTPRequest  $request
+     * @param HTTPResponse $response
+     * @param AppView      $appView
+     */
+    public function doPost(HTTPRequest $request, HTTPResponse $response,
+        AppView $appView
+    );
 }

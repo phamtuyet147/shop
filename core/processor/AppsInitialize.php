@@ -109,9 +109,9 @@ final class AppsInitialize
 
         ViewConfig::init($appView);
 
-        if (!empty($app->appValidator)) {
-            $appValidator = (string)$app->appValidator;
-            AppValidator::init($appValidator);
+        if (!empty($app->appForm)) {
+            $appForm = (string)$app->appForm;
+            AppValidator::init($appForm);
         }
     }
 

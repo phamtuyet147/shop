@@ -1,9 +1,3 @@
-<?php
-/**
- * @var string $error
- * @var string $message
- */
-?>
 <!doctype html>
 <!--suppress ALL -->
 <html>
@@ -12,7 +6,7 @@
     <meta name="author" content="Sói Hoang"/>
     <title>{w:msg page.title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="alternate" href="<?= \core\utils\AppInfo::$BASE_URL ?>"
+    <link rel="alternate" href=""
           hreflang="vi"/>
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
@@ -35,15 +29,15 @@
         </header>
         <div class="col-sm-9 col-lg-10">
             <div class="col-sm-12">
-                <div class="alert alert-danger alert-dismissable fade in <?php echo empty($wError)
-                    ? 'hide' : '' ?>">
+                <div class="alert alert-danger alert-dismissable fade in {w:func echo empty($wError)
+                    ? 'hide' : '' }">
                     <a href="#" class="close" data-dismiss="alert"
                        aria-label="close">&times;</a>
                     <strong id="w-error"><?php echo empty($wError)
                             ? '' : $wError ?></strong>
                 </div>
-                <div class="alert alert-success alert-dismissable fade <?php echo empty($wSuccess)
-                    ? 'hide' : '' ?>">
+                <div class="alert alert-success alert-dismissable fade {w:func echo empty($wSuccess)
+                    ? 'hide' : '' }">
                     <a href="#" class="close" data-dismiss="alert"
                        aria-label="close">&times;</a>
                     <strong id="w-success"><?php echo empty($wSuccess)

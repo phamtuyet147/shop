@@ -21,7 +21,7 @@ final class HashUtil
      */
     public static function init($prefix, $defaultHashMethod)
     {
-        self::$PREFIX              = $prefix;
+        self::$PREFIX = $prefix;
         self::$DEFAULT_HASH_METHOD = $defaultHashMethod;
     }
 
@@ -101,5 +101,18 @@ final class HashUtil
     {
         $result = uniqid(time() . rand());
         return $result;
+    }
+
+    /**
+     * @param null $method
+     *
+     * @return string
+     */
+    public static function randomHash($method = null)
+    {
+        $str = rand(0, 99999);
+        $hash = self::getHash($str, $method);
+
+        return $hash;
     }
 }

@@ -9,7 +9,7 @@
 namespace apps\ctsv\controller;
 
 
-use core\processor\AppView;
+use core\app\AppView;
 use core\utils\HTTPRequest;
 use core\utils\HTTPResponse;
 
@@ -20,11 +20,21 @@ class ViewLoginController extends BaseAppController
      * @param HTTPRequest  $request
      * @param HTTPResponse $response
      * @param AppView      $appView
-     *
      */
-    public function execute(HTTPRequest $request, HTTPResponse $response,
+    public function doGet(HTTPRequest $request, HTTPResponse $response,
         AppView $appView
     ) {
         $appView->doView('success');
+    }
+
+    /**
+     * @param HTTPRequest  $request
+     * @param HTTPResponse $response
+     * @param AppView      $appView
+     */
+    public function doPost(HTTPRequest $request, HTTPResponse $response,
+        AppView $appView
+    ) {
+        // TODO: Implement doPost() method.
     }
 }

@@ -2,7 +2,7 @@
 <appMapping xmlns="http://linhnv.xyz/app.mapping">
 
     <filter>
-        <pattern>/*.post</pattern>
+        <pattern>/*</pattern>
         <action>\core\app\FormValidationFilter</action>
     </filter>
 
@@ -13,6 +13,8 @@
 
     <controller>
         <pattern>/</pattern>
+        <form>TestForm</form>
+        <error>/</error>
         <action>\apps\blog\controller\dashboard\ViewDashboard</action>
         <views>
             <view on="success" action="Home.view"/>

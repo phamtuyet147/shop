@@ -11,15 +11,14 @@
     <meta name="author" content="Sói Hoang"/>
     <title>Báo cáo Công tác sinh viên</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="alternate" href="<?php echo \core\utils\AppInfo::$BASE_URL ?>"
+    <link rel="alternate" href="{w:func echo \core\utils\AppInfo::$BASE_URL}"
           hreflang="vi"/>
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/resources/js/jquery-ui/jquery-ui.min.css"/>
     <link rel="stylesheet" href="/resources/css/wStyle.css"/>
     <script type="text/javascript"
             src="/resources/js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript"
-            src="/resources/js/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/resources/js/common.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
 </head>
 <body>
@@ -27,18 +26,16 @@
     {w:view header}
 </header>
 <div class="container">
-    <?php
-    if (!empty($error) || !empty($message)) {
-        ?>
-        <div class="width-100 text-center">
-            <?php if (!empty($error)) { ?>
-                <div class="message message-error"><?php echo $error ?></div>
-            <?php } ?>
-            <?php if (!empty($message)) { ?>
-                <div class="message message-success"><?php echo $message ?></div>
-            <?php } ?>
-        </div>
-    <?php } ?>
+    {w:func if (!empty($error) || !empty($message)) {}
+    <div class="width-100 text-center">
+        {w:func if (!empty($error)) {}
+        <div class="message message-error">{w:func echo $error}</div>
+        {/w:func}
+        {w:func if (!empty($message)) {}
+        <div class="message message-success">{w:func echo $message}</div>
+        {/w:func}
+    </div>
+    {/w:func}
     {w:view body}
 </div>
 <footer class="bg-blue">

@@ -15,6 +15,7 @@ use core\utils\Cache;
 use core\utils\FileUtils;
 use core\utils\HTTPRequest;
 use core\utils\HTTPResponse;
+use core\utils\WForm;
 use Exception;
 use SimpleXMLElement;
 
@@ -166,14 +167,13 @@ final class AppRouting
     }
 
     /**
-     * @param HTTPRequest  $request
-     * @param HTTPResponse $response
+     * @param $pagePath
      *
+     * @return array|bool|mixed|string
      * @throws Exception
      */
-    public static function runApp(HTTPRequest $request, HTTPResponse $response)
+    public static function initRoute($pagePath)
     {
-        $pagePath = $request->getPagePath();
         $asteriskRoutePattern
             = '/' . preg_quote(
                 AppConfiguration::$FW_CONFIG['asteriskRouteOpenTag']
@@ -208,9 +208,26 @@ final class AppRouting
             );
         } else {
             $routed = json_decode($routed, true);
-            $routedFilters = $routed['filters'];
-            $routedController = $routed['controller'];
         }
+
+        return $routed;
+    }
+
+    /**
+     * @param HTTPRequest  $request
+     * @param HTTPResponse $response
+     *
+     * @throws Exception
+     */
+    public static function firstRunApp(HTTPRequest $request,
+        HTTPResponse $response
+    ) {
+        $pagePath = $request->getPagePath();
+
+        $routed = self::initRoute($pagePath);
+
+        $routedFilters = $routed['filters'];
+        $routedController = $routed['controller'];
 
         $routedController = simplexml_load_string($routedController);
 
@@ -231,7 +248,51 @@ final class AppRouting
         if (!class_exists($controllerClass)) {
             throw new Exception('Could not find controller');
         }
-        $appView = new AppView($request, $response);
+
+        self::runController($routedController, $request, $response);
+    }
+
+    /**
+     * @param HTTPRequest  $request
+     * @param HTTPResponse $response
+     *
+     * @throws Exception
+     */
+    public static function runApp(HTTPRequest $request, HTTPResponse $response)
+    {
+        $pagePath = $request->getPagePath();
+
+        $routed = self::initRoute($pagePath);
+
+        $routedController = $routed['controller'];
+
+        $routedController = simplexml_load_string($routedController);
+
+        self::initFormValidation($routedController);
+
+        if (empty($routedController->action)) {
+            throw new Exception('Could not init controller: ' . $pagePath);
+        }
+        self::runController($routedController, $request, $response);
+    }
+
+    /**
+     * @param              $routedController
+     * @param HTTPRequest  $request
+     * @param HTTPResponse $response
+     *
+     * @throws Exception
+     */
+    private static function runController($routedController,
+        HTTPRequest $request, HTTPResponse $response
+    ) {
+        $pagePath = $request->getPagePath();
+
+        $controllerClass = (string)$routedController->action;
+        if (!class_exists($controllerClass)) {
+            throw new Exception('Could not find controller');
+        }
+        $appView = new AppView(new HTTPRequest(), new HTTPResponse());
         if (isset($routedController->views)) {
             $appView->setViews($routedController->views[0]);
         }
@@ -244,12 +305,28 @@ final class AppRouting
 
         /** @var AppController $controllerClass */
         $controllerClass = new $controllerClass($request, $response);
-        if (!method_exists($controllerClass, 'execute')) {
+        if (!method_exists($controllerClass, 'doGet')
+            && !method_exists(
+                $controllerClass, 'doPost'
+            )
+        ) {
             throw new Exception(
                 'Fail to init controller for this path: ' . $pagePath
             );
         }
-        $controllerClass->execute($request, $response, $appView);
+
+        //Bind post params to form
+        if (!empty($routedController->form)) {
+            new WForm(
+                (string)$routedController->form, $request->getParameters()
+            );
+        }
+
+        if ($request->isPost() && $request->getRealPagePath() == $pagePath) {
+            $controllerClass->doPost($request, $response, $appView);
+        } else {
+            $controllerClass->doGet($request, $response, $appView);
+        }
     }
 
     /**

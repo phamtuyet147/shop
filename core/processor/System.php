@@ -24,7 +24,7 @@ final class System
                 );
             }
             AppsInitialize::initApp();
-            AppRouting::runApp(new HTTPRequest(), new HTTPResponse());
+            AppRouting::firstRunApp(new HTTPRequest(), new HTTPResponse());
         } catch (Exception $e) {
             exit('Caught Exception: ' . $e->getMessage());
         }

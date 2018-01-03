@@ -32,6 +32,7 @@
 
     <xs:complexType name="directoryType">
         <xs:all>
+            <xs:element name="cacheView" type="xs:string"/>
             <xs:element name="resources" type="xs:string"/>
             <xs:element name="properties" type="xs:string"/>
             <xs:element name="language" type="xs:string"/>
@@ -71,8 +72,11 @@
             <xs:element name="text" type="xs:string"/>
             <xs:element name="msg" type="xs:string"/>
             <xs:element name="var" type="xs:string"/>
-            <xs:element name="form" type="xs:string"/>
+            <xs:element name="formData" type="xs:string"/>
+            <xs:element name="opsValue" type="xs:string"/>
+            <xs:element name="selectValue" type="xs:string"/>
             <xs:element name="function" type="xs:string"/>
+            <xs:element name="action" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 

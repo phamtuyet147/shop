@@ -17,22 +17,36 @@ class AutoLoad
             if (!preg_match('/^(core|apps)/', $className)) {
                 return;
             }
-            $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $className);
-            $fileName = trim($fileName, DIRECTORY_SEPARATOR);
-            $fileName .= '.php';
-
-            if (!file_exists($fileName)) {
-                throw new Exception('Could not find file ' . $fileName);
-            }
-            /** @noinspection PhpIncludeInspection */
-            require_once $fileName;
-            if (method_exists($className, '__init') && !in_array($className, self::$initialized)) {
-                self::$initialized[] = $className;
-                /** @noinspection PhpUndefinedMethodInspection */
-                $className::__init();
-            }
+            self::loadFile($className);
         } catch (Exception $e) {
             exit('Caught Exception: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * @param $className
+     *
+     * @throws Exception
+     */
+    private static function loadFile($className)
+    {
+        $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $className);
+        $fileName = trim($fileName, DIRECTORY_SEPARATOR);
+        $fileName .= '.php';
+
+        if (!file_exists($fileName)) {
+            throw new Exception('Could not find file ' . $fileName);
+        }
+        /** @noinspection PhpIncludeInspection */
+        require_once $fileName;
+        if (method_exists($className, '__init')
+            && !in_array(
+                $className, self::$initialized
+            )
+        ) {
+            self::$initialized[] = $className;
+            /** @noinspection PhpUndefinedMethodInspection */
+            $className::__init();
         }
     }
 }

@@ -7,8 +7,6 @@
 use core\utils\AppInfo;
 
 ?>
-<!doctype html>
-<!--suppress ALL -->
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -21,7 +19,7 @@ use core\utils\AppInfo;
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
     <link href="/resources/css/navbar-fixed-side.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/resources/css/style.css"/>
+    <link rel="stylesheet" href="/resources/css/wStyle.css"/>
     <script type="text/javascript"
             src="/resources/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript"

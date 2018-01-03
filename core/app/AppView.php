@@ -9,6 +9,7 @@
 namespace core\app;
 
 
+use core\processor\AppConfiguration;
 use core\processor\AppRouting;
 use core\processor\ViewConfig;
 use core\utils\HTTPRequest;
@@ -35,6 +36,7 @@ class AppView implements AppController
     public function doView($name)
     {
         try {
+            HTTPRequest::setRequestMethod();
             if (empty($this->views)) {
                 throw new Exception('This controller do not have any view');
             }
@@ -62,7 +64,7 @@ class AppView implements AppController
     /**
      * Controller constructor.
      *
-     * @param HTTPRequest $request
+     * @param HTTPRequest  $request
      * @param HTTPResponse $response
      */
     public function __construct(HTTPRequest $request, HTTPResponse $response)
@@ -76,11 +78,30 @@ class AppView implements AppController
      *
      * @throws Exception
      */
-    public function execute(HTTPRequest $request, HTTPResponse $response,
-                            AppView $appView
-    )
-    {
+    public function doGet(HTTPRequest $request, HTTPResponse $response,
+        AppView $appView
+    ) {
         $pagePath = $request->getPagePath();
-        ViewConfig::initView($pagePath);
+        if (AppConfiguration::$DEVELOPER_MODE) {
+            ViewConfig::initView($pagePath);
+        }
+        $cachedView = ViewConfig::loadCachedView($pagePath);
+        if (!$cachedView) {
+            throw new Exception('Could not load View content');
+        }
+        /** @noinspection PhpIncludeInspection */
+        include $cachedView;
+        exit();
+    }
+
+    /**
+     * @param HTTPRequest  $request
+     * @param HTTPResponse $response
+     * @param AppView      $appView
+     */
+    public function doPost(HTTPRequest $request, HTTPResponse $response,
+        AppView $appView
+    ) {
+        // TODO: Implement doPost() method.
     }
 }

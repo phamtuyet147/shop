@@ -18,13 +18,24 @@ class ViewAdminDashboard extends BaseBlogController
 {
 
     /**
-     * @param HTTPRequest $request
+     * @param HTTPRequest  $request
      * @param HTTPResponse $response
-     * @param AppView $appView
-     *
+     * @param AppView      $appView
      */
-    public function execute(HTTPRequest $request, HTTPResponse $response, AppView $appView)
-    {
+    public function doGet(HTTPRequest $request, HTTPResponse $response,
+        AppView $appView
+    ) {
         $appView->doView('success');
+    }
+
+    /**
+     * @param HTTPRequest  $request
+     * @param HTTPResponse $response
+     * @param AppView      $appView
+     */
+    public function doPost(HTTPRequest $request, HTTPResponse $response,
+        AppView $appView
+    ) {
+        // TODO: Implement doPost() method.
     }
 }

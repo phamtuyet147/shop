@@ -4,26 +4,6 @@
     <cacheEngine>redis</cacheEngine>
 
     <app>
-        <appName>blog</appName>
-        <domainName>wsource.blog</domainName>
-        <ssl>false</ssl>
-        <appSetting>configuration.xml</appSetting>
-        <appMapping>mapping.xml</appMapping>
-        <appView>view.xml</appView>
-        <appForm>form.xml</appForm>
-    </app>
-
-    <app>
-        <appName>acm</appName>
-        <domainName>acm.uit.vn</domainName>
-        <ssl>false</ssl>
-        <appSetting>configuration.xml</appSetting>
-        <appMapping>mapping.xml</appMapping>
-        <appView>view.xml</appView>
-        <appForm>form.xml</appForm>
-    </app>
-
-    <app>
         <appName>ctsv</appName>
         <domainName>ctsv.com</domainName>
         <ssl>false</ssl>
@@ -33,15 +13,6 @@
         <appForm>form.xml</appForm>
     </app>
 
-    <app>
-        <appName>code</appName>
-        <domainName>wcode.online</domainName>
-        <ssl>false</ssl>
-        <appSetting>configuration.xml</appSetting>
-        <appMapping>mapping.xml</appMapping>
-        <appView>view.xml</appView>
-    </app>
-
-    <defaultApp>blog</defaultApp>
+    <defaultApp>ctsv</defaultApp>
 
 </siteSetting>

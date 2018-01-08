@@ -15,6 +15,8 @@
             });
         });
 
+        $('.slider').slider(5000);
+
         $('form').on('submit', function () {
             var flagError = false;
             $(this).find('.required').each(function (index, item) {

@@ -99,7 +99,7 @@ final class HashUtil
      */
     public static function generateId()
     {
-        $result = uniqid(time() . rand());
+        $result = uniqid('', true);
         return $result;
     }
 

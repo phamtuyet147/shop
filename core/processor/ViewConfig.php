@@ -55,7 +55,7 @@ final class ViewConfig
         $appViews = Cache::get(self::CACHE_VIEWS);
         if (!$appViews) {
             $appViews = FileUtils::readMultipleXMLFile(
-                self::$viewConfigFiles, 'views', AppInfo::$BASE_PATH
+                self::$viewConfigFiles, 'view', AppInfo::$BASE_PATH
             );
             Cache::set(self::CACHE_VIEWS, $appViews->asXML());
         } else {
@@ -458,23 +458,25 @@ final class ViewConfig
         $customRules = $customRulesDom->ownerDocument->saveXML(
             $customRulesDom->ownerDocument->documentElement
         );
-        $customRules = htmlspecialchars(json_encode($customRules));
-        $webForms = json_encode($webForms, 128);
-        $scriptText
-            = <<<JS
+        if (!empty($body)) {
+            $customRules = htmlspecialchars(json_encode($customRules));
+            $webForms = json_encode($webForms, 128);
+            $scriptText
+                = <<<JS
                 WValidate.setForms({$webForms});
                 var EXTERNAL_FRAGMENT;
                 WValidate.setDefaultMessage({$defaultMessageData});
                 WValidate.setCustomRules({$customRules});
 JS;
 
-        $script = $dom->createElement('script', $scriptText);
-        $body = $dom->getElementsByTagName('body');
-        /**
-         * @var \DOMElement $body
-         */
-        $body = $body[0];
-        $body->appendChild($script);
+            $script = $dom->createElement('script', $scriptText);
+            $body = $dom->getElementsByTagName('body');
+            /**
+             * @var \DOMElement $body
+             */
+            $body = $body[0];
+            $body->appendChild($script);
+        }
 
         $context = urldecode(html_entity_decode($dom->saveHTML()));
         $context = preg_replace("/wOps=\"({.*?})\"/s", "$1", $context);

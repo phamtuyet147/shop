@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 13px;
+    font-family: 'San-serif', 'Tahoma', serif;
+}
+
+.row {
+    float: left;
+    display: block;
+    width: 100%;
+    padding: 5px 20px;
+}
+
+.bg-danger {
+    background: #ff0000;
+    color: #fff;
+}
+
+.display-inline {
+    display: inline-block;
+}
+
+.input {
+    padding: 5px 20px;
+    display: block;
+    width: 100%
+}
+
+.col-7 {
+    float: left;
+    width: 70%;
+    display: inline-block;
+}
+
+.col-4 {
+    float: left;
+    width: 40%;
+    display: inline-block;
+}
+
+.col-3 {
+    float: left;
+    width: 30%;
+    display: inline-block;
+}
+
+.btn {
+    padding: 13px 20px;
+    color: #fff;
+    background: #00a8ff;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.item-menu {
+    display: inline-block;
+}
+
+.item-menu a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    float: left;
+    text-transform: uppercase;
+}
+
+.bg-success {
+    background: #cc1f3d;
+}
+
+.img-responsive {
+    max-width: 100%;
+    max-height: 100%;
+    display: inline-block;
+}
+
+.footer {
+    border: 1px solid #000000;
+    background-color: #ff3333;
+    color: #ffffff;
+    width: 100%;
+    float: left;
+    height: 202px;
+}
+
+.contact {
+    float: left;
+    width: 25%;
+    border: 1px solid;
+    display: inline-block;
+    height: 200px;
+    padding: 41px;
+}
+
+.information {
+    float: left;
+    width: 25%;
+    border: 1px solid;
+    display: inline-block;
+    height: 200px;
+    padding: 40px
+}
+
+.logo {
+    float: left;
+    width: 25%;
+    border: 1px solid;
+    display: inline-block;
+    height: 200px;
+    padding: 31px;
+}
+
+.social {
+    float: left;
+    width: 25%;
+    border: 1px solid;
+    display: inline-block;
+    height: 200px;
+    padding: 30px;
+}
+
+b {
+    color: green;
+}
+
+.infor-filter {
+    float: left;
+    width: 20%;
+    height: 503px;
+    border: 1px solid #000000;
+}
+
+.flash-sale {
+    float: right;
+    width: 80%
+
+}
+
+.form {
+    border: 3px solid #f1f1f1;
+}
+
+.input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    height: 20px;
+
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+.img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+.span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .cancelbtn {
+        width: 100%;
+    }
+}

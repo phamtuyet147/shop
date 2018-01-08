@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<statements xmlns="http://linhnv.xyz/app.sql">
+
+    <getTopCategories>
+        SELECT *
+        FROM categories
+        WHERE id_parent IS NULL
+    </getTopCategories>
+
+</statements>

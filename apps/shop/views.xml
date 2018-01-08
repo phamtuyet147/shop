@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<viewConfig xmlns="http://linhnv.xyz/app.view_config">
+    <layouts>
+        <layout name="MainTemplate" layout="/view/layout/basic/template.php">
+            <part file="/view/layout/basic/header.php" name="header"/>
+            <part file="/view/layout/basic/footer.php" name="footer"/>
+            <part file="/view/blank.php" name="body"/>
+        </layout>
+    </layouts>
+    <views>
+        <view action="/Home.view" layout="MainTemplate">
+            <part file="/view/home.php" name="body"/>
+        </view>
+    </views>
+</viewConfig>

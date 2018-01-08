@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<appMapping xmlns="http://linhnv.xyz/app.mapping">
+
+    <controller>
+        <pattern>/*.view</pattern>
+        <action>\core\app\AppView</action>
+    </controller>
+    <controller>
+        <pattern>/</pattern>
+        <action>\apps\shop\controller\web\HomeAction</action>
+        <views>
+            <view action="/Home.view" on="success"/>
+        </views>
+    </controller>
+</appMapping>

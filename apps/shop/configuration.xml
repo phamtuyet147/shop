@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<appSetting xmlns="http://linhnv.xyz/app.configuration">
+    <defaultLanguage>vi_VN</defaultLanguage>
+    <developer>true</developer>
+    <connection>
+        <hostname>localhost</hostname>
+        <databaseName>shop</databaseName>
+        <username>shop</username>
+        <password>123456</password>
+        <hashType>md5</hashType>
+    </connection>
+    <directory>
+        <cacheView>cache</cacheView>
+        <resources>resources</resources>
+        <properties>properties</properties>
+        <language>resources/lang</language>
+        <sql>resources/sql</sql>
+    </directory>
+    <hash>
+        <prefix>shop</prefix>
+        <defaultHashType>md5</defaultHashType>
+    </hash>
+</appSetting>

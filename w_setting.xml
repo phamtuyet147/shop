@@ -4,15 +4,15 @@
     <cacheEngine>redis</cacheEngine>
 
     <app>
-        <appName>ctsv</appName>
-        <domainName>ctsv.com</domainName>
+        <appName>shop</appName>
+        <domainName>shop.vn</domainName>
         <ssl>false</ssl>
         <appSetting>configuration.xml</appSetting>
         <appMapping>mapping.xml</appMapping>
-        <appView>view.xml</appView>
-        <appForm>form.xml</appForm>
+        <appView>views.xml</appView>
+        <appForm>validation.xml</appForm>
     </app>
 
-    <defaultApp>ctsv</defaultApp>
+    <defaultApp>shop</defaultApp>
 
 </siteSetting>

@@ -18,7 +18,7 @@ use apps\ctsv\object\User;
 ?><div class="top-head width-100">
     <div class="width-20">
         <a class="display-block logo" href="/" title="Đại học quốc gia thành phố Hồ Chí Minh">
-            <img class="display-block image-resize" src="/resources/images/logo_dhqg.png" alt="Đại học quốc gia thành phố Hồ Chí Minh"></a>
+            <img class="display-block image-resize banner" src="/resources/images/logo_dhqg.png" alt="Đại học quốc gia thành phố Hồ Chí Minh"></a>
     </div>
     <h1 class="width-80 text-center text-uppercase text-lg">
         BÁO CÁO SỐ LIỆU CÔNG TÁC SINH VIÊN TRỰC TUYẾN

@@ -322,10 +322,9 @@ final class AppRouting
             );
         }
 
+        $controllerClass->doGet($request, $response, $appView);
         if ($request->isPost() && $request->getRealPagePath() == $pagePath) {
             $controllerClass->doPost($request, $response, $appView);
-        } else {
-            $controllerClass->doGet($request, $response, $appView);
         }
     }
 

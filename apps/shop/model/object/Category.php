@@ -13,6 +13,7 @@ class Category
 {
     private $id;
     private $title;
+    private $url;
     private $shortTag;
     private $parentId;
 
@@ -24,11 +25,12 @@ class Category
      * @param null $shortTag
      * @param null $parentId
      */
-    public function __construct($id = null, $title = null, $shortTag = null,
-        $parentId = null
+    public function __construct($id = null, $title = null, $url = null,
+        $shortTag = null, $parentId = null
     ) {
         $this->id = $id;
         $this->title = $title;
+        $this->url = $url;
         $this->shortTag = $shortTag;
         $this->parentId = $parentId;
     }
@@ -95,5 +97,21 @@ class Category
     public function setParentId($parentId)
     {
         $this->parentId = $parentId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param mixed $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
     }
 }

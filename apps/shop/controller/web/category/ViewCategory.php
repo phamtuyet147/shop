@@ -2,11 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: nguye
- * Date: 1/7/2018
- * Time: 7:38 PM
+ * Date: 1/14/2018
+ * Time: 9:25 PM
  */
 
-namespace apps\shop\controller\web;
+namespace apps\shop\controller\web\category;
 
 
 use apps\shop\controller\BaseAction;
@@ -15,7 +15,7 @@ use core\app\AppView;
 use core\utils\HTTPRequest;
 use core\utils\HTTPResponse;
 
-class NavGeneratorAction extends BaseAction
+class ViewCategory extends BaseAction
 {
 
     /**
@@ -26,16 +26,16 @@ class NavGeneratorAction extends BaseAction
     public function doGet(HTTPRequest $request, HTTPResponse $response,
         AppView $appView
     ) {
-        $categories = CategoryDAO::getTopCategories();
-
-        $html = '';
-        foreach ($categories as $category) {
-            $html .= '<li><a href="' . $category->getUrl() . '">' .
-                $category->getTitle() .
-                '</a></li>';
+        $shortTag = $request->getParameter('short_tag');
+        $category = CategoryDAO::getCategoryByShortTag($shortTag);
+        if (!$category) {
+            $appView->doView('error');
         }
+        $products = CategoryDAO::getProductsByCategoryId($category->getId());
+        $request->setAttribute('category', $category);
+        $request->setAttribute('products', $products);
 
-        $response->setContent($html);
+        $appView->doView('success');
     }
 
     /**

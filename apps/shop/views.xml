@@ -12,4 +12,9 @@
             <part file="/view/home.php" name="body"/>
         </view>
     </views>
+    <views>
+        <view action="/Category.view" layout="MainTemplate">
+            <part file="/view/category/index.php" name="body"/>
+        </view>
+    </views>
 </viewConfig>

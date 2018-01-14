@@ -12,4 +12,12 @@
             <view action="/Home.view" on="success"/>
         </views>
     </controller>
+    <controller>
+        <pattern>/cat/*</pattern>
+        <action>\apps\shop\controller\web\category\ViewCategory</action>
+        <bind>short_tag</bind>
+        <views>
+            <view action="/Category.view" on="success"/>
+        </views>
+    </controller>
 </appMapping>

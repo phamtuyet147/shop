@@ -8,11 +8,14 @@
     <title>Christmas Store</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/resources/css/style.css">
+    <link rel="stylesheet" href="/resources/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/resources/css/style.css"/>
 
     <!-- JS -->
     <script src="/resources/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript"
+            src="/resources/js/bootstrap.min.js"></script>
     <script language="javascript" src="/resources/js/common.js"></script>
     <script language="javascript" src="/resources/js/custom.js"></script>
 </head>
@@ -20,8 +23,10 @@
 <header>
     {w:view header}
 </header>
-{w:view body}
-<footer class="footer">
+<div class="container-fluid">
+    {w:view body}
+</div>
+<footer class="container-fluid">
     {w:view footer}
 </footer>
 </body>

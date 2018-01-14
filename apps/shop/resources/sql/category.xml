@@ -7,4 +7,19 @@
         WHERE id_parent IS NULL
     </getTopCategories>
 
+    <getCategoryByShortTag>
+        SELECT *
+        FROM categories
+        WHERE short_tag = ?
+        LIMIT 1
+    </getCategoryByShortTag>
+
+    <getProductsByCategoryId>
+        SELECT *
+        FROM products
+        WHERE :condition
+        ORDER BY :order
+        LIMIT :from, :limit
+    </getProductsByCategoryId>
+
 </statements>

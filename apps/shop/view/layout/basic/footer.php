@@ -1,25 +1,26 @@
-<div class="contact">
+<div class="col-sm-4">
     <b>GIẢI ĐÁP THÔNG TIN.</b><br>
     <p>Liên hệ : Trường đại học công nghệ thông tin , Khu phố 6, phường Linh
         Trung ,quận Thủ Đức, tp. HCM</p>
     <p>Số điện thoại : 1900-82234-4754</p>
     <a href="">Hướng dấn đổi trả.</a>
 </div>
-<div class="information">
-    <b>MERY CHISTHMUS STORE</b>
-    <p>Cửa hàng của chúng tôi rất vui lòng được phục vụ quý khách.
+<div class="col-sm-4">
+    <p>
+        <a href="#" class="brand-circle">
+            <i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="#" class="brand-circle">
+            <i class="fa fa-google-plus" aria-hidden="true"></i></a>
+        <a href="#" class="brand-circle">
+            <i class="fa fa-twitter" aria-hidden="true"></i></a>
     </p>
+    <form class="form-inline">Get deals:
+        <input type="email" class="form-control" size="50"
+               placeholder="Email Address">
+        <button type="button" class="btn btn-danger">Sign Up</button>
+    </form>
 </div>
-<div class="social">
-    <b> CÁC CỔNG THÔNG TIN CHÍNH CỦA CỬA HÀNG .</b><br>
-    <i class="fa fa-facebook-official" aria-hidden="true"></i><br>
-    <p>Facebook</p>
-    <i class="fa fa-envelope-o" aria-hidden="true"></i><br>
-    <p>twiter </p>
-    <i class="fa fa-twitter" aria-hidden="true"></i><br>
-    <p>Gmail</p>
-</div>
-<div class="logo">
+<div class="col-sm-4">
     <img src="/resources/images/nav_logo.png">
     <b>HỆ THỐNG CÁC CỬA HÀNG :</b>
     <ul>

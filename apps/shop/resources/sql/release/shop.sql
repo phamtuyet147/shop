@@ -59,6 +59,21 @@ CREATE TABLE managers (
   password VARCHAR(80) NOT NULL
 );
 
+INSERT INTO shop.categories (id, title, short_tag, id_parent, url)
+VALUES (2, 'Đồ trang trí', 'do-trang-tri', NULL, '/cat/do-trang-tri');
+INSERT INTO shop.categories (id, title, short_tag, id_parent, url)
+VALUES (3, 'Cây thông Noel', 'cay-thong-noel', NULL, '/cat/cay-thong-noel');
+INSERT INTO shop.categories (id, title, short_tag, id_parent, url)
+VALUES (4, 'Trang phục người lớn', 'trang-phuc-nguoi-lon', NULL, '/cat/trang-phuc-nguoi-lon');
+INSERT INTO shop.categories (id, title, short_tag, id_parent, url)
+VALUES (5, 'Trang phục trẻ em', 'trang-phuc-tre-em', NULL, '/cat/trang-phuc-tre-em');
+INSERT INTO shop.categories (id, title, short_tag, id_parent, url)
+VALUES (6, 'Thiệp giáng sinh', 'thiep-giang-sinh', NULL, '/cat/thiep-giang-sinh');
+INSERT INTO shop.categories (id, title, short_tag, id_parent, url)
+VALUES (7, 'Hộp nhạc', 'hop-nhac', NULL, '/cat/hop-nhac');
+INSERT INTO shop.categories (id, title, short_tag, id_parent, url)
+VALUES (8, 'Quà tặng', 'qua-tang', NULL, '/cat/qua-tang');
+
 INSERT INTO products (id_category, title, short_tag, price, short_desc, `desc`, thumbnail, dt_create, dt_modified)
 VALUES (2, 'San pham 1', 'san-pham-1', 10000, 'Mô tả thông tin ngắn về sản phẩm 1', 'Thông tin chi tiết về sản phẩm 1',
         'https://placehold.it/150x80?text=IMAGE', '2018-01-01 10:00:00', '2018-01-01 10:00:00');

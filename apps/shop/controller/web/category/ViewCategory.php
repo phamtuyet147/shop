@@ -11,6 +11,7 @@ namespace apps\shop\controller\web\category;
 
 use apps\shop\controller\BaseAction;
 use apps\shop\model\dao\CategoryDAO;
+use apps\shop\model\dao\ProductDAO;
 use core\app\AppView;
 use core\utils\HTTPRequest;
 use core\utils\HTTPResponse;
@@ -31,7 +32,9 @@ class ViewCategory extends BaseAction
         if (!$category) {
             $appView->doView('error');
         }
-        $products = CategoryDAO::getProductsByCategoryId($category->getId());
+        $products = ProductDAO::getProductsByConditions(
+            array('id_category' => $category->getId())
+        );
         $request->setAttribute('category', $category);
         $request->setAttribute('products', $products);
 

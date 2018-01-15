@@ -79,7 +79,7 @@ class FormValidationFilter implements AppFilter
                             $action = '/' . $action;
                             $request->setRequestMethod();
                             $request->setPagePath($action);
-                            $request->setAttribute('error', $errorMessage);
+                            $request->setAttribute('wError', $errorMessage);
                             AppRouting::runApp($request, $response);
                         }
                         return;

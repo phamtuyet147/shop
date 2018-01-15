@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <appMapping xmlns="http://linhnv.xyz/app.mapping">
 
+    <filter>
+        <pattern>/*</pattern>
+        <action>\core\app\FormValidationFilter</action>
+    </filter>
+
     <controller>
         <pattern>/*.view</pattern>
         <action>\core\app\AppView</action>
+    </controller>
+    <controller>
+        <pattern>/login</pattern>
+        <action>\apps\shop\controller\auth\LoginAction</action>
+        <views>
+            <view action="/auth/Login.view" on="success"/>
+        </views>
+    </controller>
+    <controller>
+        <pattern>/register</pattern>
+        <form>RegisterFrm</form>
+        <error>/register</error>
+        <action>\apps\shop\controller\auth\RegisterAction</action>
+        <views>
+            <view action="/auth/Register.view" on="success"/>
+        </views>
+    </controller>
+    <controller>
+        <pattern>/logout</pattern>
+        <action>\apps\shop\controller\auth\LogoutAction</action>
     </controller>
     <controller>
         <pattern>/</pattern>
@@ -18,6 +43,20 @@
         <bind>short_tag</bind>
         <views>
             <view action="/Category.view" on="success"/>
+        </views>
+    </controller>
+    <controller>
+        <pattern>/admin</pattern>
+        <action>\apps\shop\controller\admin\AdminHome</action>
+        <views>
+            <view action="/admin/Home.view" on="success"/>
+        </views>
+    </controller>
+    <controller>
+        <pattern>/admin/products</pattern>
+        <action>\apps\shop\controller\admin\product\ViewProducts</action>
+        <views>
+            <view action="/admin/Products.view" on="success"/>
         </views>
     </controller>
 </appMapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<forms xmlns="http://linhnv.xyz/forms">
+    <form name="LoginFrm">
+        <field name="username" condition="required">
+            <msg for="required" text="Vui lòng nhập tên đăng nhập"/>
+        </field>
+        <field name="password" condition="required">
+            <msg for="required" text="Vui lòng nhập mật khẩu"/>
+        </field>
+    </form>
+    <form name="RegisterFrm">
+        <field name="name" condition="required"/>
+        <field name="address" condition="required"/>
+        <field name="email" condition="required"/>
+        <field name="phone" condition="required"/>
+        <field name="password" condition="required"/>
+        <field name="retype_password" condition="required,match">
+            <args for="match">password</args>
+        </field>
+    </form>
+</forms>

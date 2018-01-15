@@ -25,9 +25,8 @@
                 {w:action \apps\shop\controller\web\NavGeneratorAction}
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="fa fa-user"></i>
-                        Tài khoản</a></li>
-                <li><a href="#"<i class="fa fa-shopping-cart"></i>
+                {w:action \apps\shop\controller\web\FetchCustomer}
+                <li><a href="/view-cart"<i class="fa fa-shopping-cart"></i>
                     Giỏ hàng</a></li>
             </ul>
         </div>

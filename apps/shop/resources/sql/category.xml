@@ -14,12 +14,4 @@
         LIMIT 1
     </getCategoryByShortTag>
 
-    <getProductsByCategoryId>
-        SELECT *
-        FROM products
-        WHERE :condition
-        ORDER BY :order
-        LIMIT :from, :limit
-    </getProductsByCategoryId>
-
 </statements>

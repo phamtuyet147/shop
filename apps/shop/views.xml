@@ -6,15 +6,33 @@
             <part file="/view/layout/basic/footer.php" name="footer"/>
             <part file="/view/blank.php" name="body"/>
         </layout>
+        <layout name="AdminTemplate" layout="/view/layout/admin/template.php">
+            <part file="/view/layout/admin/header.php" name="header"/>
+            <part file="/view/layout/admin/footer.php" name="footer"/>
+            <part file="/view/blank.php" name="body"/>
+        </layout>
     </layouts>
     <views>
+        <view action="/auth/Login.view" layout="MainTemplate">
+            <part file="/view/auth/login.php" name="body"/>
+        </view>
+        <view action="/auth/Register.view" layout="MainTemplate">
+            <part file="/view/auth/register.php" name="body"/>
+        </view>
         <view action="/Home.view" layout="MainTemplate">
             <part file="/view/home.php" name="body"/>
         </view>
-    </views>
-    <views>
+        <view action="/Home.view" layout="MainTemplate">
+            <part file="/view/home.php" name="body"/>
+        </view>
         <view action="/Category.view" layout="MainTemplate">
             <part file="/view/category/index.php" name="body"/>
+        </view>
+        <view action="/admin/Home.view" layout="AdminTemplate">
+            <part file="/view/admin/home.php" name="body"/>
+        </view>
+        <view action="/admin/Products.view" layout="AdminTemplate">
+            <part file="/view/admin/product/index.php" name="body"/>
         </view>
     </views>
 </viewConfig>

@@ -2,20 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: nguye
- * Date: 1/14/2018
- * Time: 11:58 PM
+ * Date: 1/15/2018
+ * Time: 11:00 AM
  */
 
-namespace apps\shop\controller\admin\product;
+namespace apps\shop\controller\web;
 
 
 use apps\shop\controller\BaseAction;
-use apps\shop\model\dao\ProductDAO;
+use apps\shop\model\object\Customer;
 use core\app\AppView;
 use core\utils\HTTPRequest;
 use core\utils\HTTPResponse;
 
-class ViewProducts extends BaseAction
+class FetchCustomer extends BaseAction
 {
 
     /**
@@ -26,10 +26,20 @@ class ViewProducts extends BaseAction
     public function doGet(HTTPRequest $request, HTTPResponse $response,
         AppView $appView
     ) {
-        $products = ProductDAO::getProductsByConditions();
+        /**
+         * @var Customer $customer
+         */
+        $customer = $request->getSession('customer');
+        if (empty($customer)) {
+            $html
+                = '<li><a href="/login"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Đăng nhập</a></li>';
+        } else {
+            $html = '<li><a href="/profile">Xin chào, ' . $customer->getName()
+                . '</a></li>' .
+                '<li><a href="/logout">Thoát</a></li>';
+        }
 
-        $request->setAttribute('products', $products);
-        $appView->doView('success');
+        $response->setContent($html);
     }
 
     /**

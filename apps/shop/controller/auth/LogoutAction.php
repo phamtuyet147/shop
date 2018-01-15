@@ -2,20 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: nguye
- * Date: 1/14/2018
- * Time: 11:58 PM
+ * Date: 1/15/2018
+ * Time: 11:12 AM
  */
 
-namespace apps\shop\controller\admin\product;
+namespace apps\shop\controller\auth;
 
 
 use apps\shop\controller\BaseAction;
-use apps\shop\model\dao\ProductDAO;
 use core\app\AppView;
 use core\utils\HTTPRequest;
 use core\utils\HTTPResponse;
 
-class ViewProducts extends BaseAction
+class LogoutAction extends BaseAction
 {
 
     /**
@@ -26,10 +25,8 @@ class ViewProducts extends BaseAction
     public function doGet(HTTPRequest $request, HTTPResponse $response,
         AppView $appView
     ) {
-        $products = ProductDAO::getProductsByConditions();
-
-        $request->setAttribute('products', $products);
-        $appView->doView('success');
+        $request->destroySession();
+        $response->redirect('/');
     }
 
     /**

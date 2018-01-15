@@ -24,7 +24,21 @@
     {w:view header}
 </header>
 <div class="container-fluid">
-    {w:view body}
+    <div class="col-sm-12">
+        <div class="alert alert-danger alert-dismissable fade in {w:func echo empty($wError) ? 'hide' : '' }">
+            <a href="#" class="close" data-dismiss="alert"
+               aria-label="close">&times;</a> <strong
+                    id="w-error">{w:func echo empty($wError) ? ''
+                : $wError }</strong></div>
+        <div class="alert alert-success alert-dismissable fade {w:func echo empty($wSuccess) ? 'hide' : '' }">
+            <a href="#" class="close" data-dismiss="alert"
+               aria-label="close">&times;</a> <strong
+                    id="w-success">{w:func echo empty($wSuccess) ? ''
+                : $wSuccess }</strong></div>
+    </div>
+    <div class="col-sm-12">
+        {w:view body}
+    </div>
 </div>
 <footer class="container-fluid">
     {w:view footer}

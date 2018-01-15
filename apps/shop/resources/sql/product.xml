@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<statements xmlns="http://linhnv.xyz/app.sql">
+
+    <getProductsByConditions>
+        SELECT *
+        FROM products
+        WHERE :condition
+        ORDER BY :order
+        LIMIT :from, :limit
+    </getProductsByConditions>
+
+</statements>

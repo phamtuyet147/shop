@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<statements xmlns="http://linhnv.xyz/app.sql">
+
+    <getCustomerLoginInfoByPhoneOrEmail>
+        SELECT
+            id_cus,
+            phone,
+            email
+        FROM cus_login
+        WHERE email = ? OR phone = ?
+        LIMIT 1
+    </getCustomerLoginInfoByPhoneOrEmail>
+
+    <authenticateCustomer>
+        SELECT
+            id_cus,
+            phone,
+            email
+        FROM cus_login
+        WHERE (email = ? OR phone = ?) AND password = ?
+        LIMIT 1
+    </authenticateCustomer>
+
+    <createCustomer>
+        INSERT INTO customers (name, gender, address) VALUES (?, ?, ?)
+    </createCustomer>
+
+    <createCustomerLogin>
+        INSERT INTO cus_login (id_cus, phone, email, password) VALUES (?, ?, ?, ?)
+    </createCustomerLogin>
+
+    <getCustomerInfo>
+        SELECT *
+        FROM customers
+        WHERE id = ?
+        LIMIT 1
+    </getCustomerInfo>
+
+</statements>

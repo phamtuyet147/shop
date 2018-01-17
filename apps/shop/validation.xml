@@ -18,4 +18,10 @@
             <args for="match">password</args>
         </field>
     </form>
+    <form name="CreateProductFrm">
+        <field name="title" condition="required"/>
+        <field name="price" condition="required,number"/>
+        <field name="short_desc" condition="required"/>
+        <field name="desc" condition="required"/>
+    </form>
 </forms>

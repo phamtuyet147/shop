@@ -3,11 +3,12 @@
  * @var \apps\shop\model\object\Product[] $products
  */
 ?>
+<h1>Danh mục sản phẩm</h1>
 <div class="text-right">
     <a href="/admin/product/create" class="btn btn-success">Thêm sản phẩm</a>
 </div>
 <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th>STT</th>

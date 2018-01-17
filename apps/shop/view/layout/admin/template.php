@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="/resources/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
     <link href="/resources/css/navbar-fixed-side.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/resources/css/blog.css"/>
+    <link rel="stylesheet" href="/resources/css/style.css"/>
     <script type="text/javascript"
             src="/resources/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript"
             src="/resources/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/resources/js/common.js"></script>
+    <script language="javascript" src="/resources/js/custom.js"></script>
     <script type="text/javascript" src="/resources/js/admin.js"></script>
 </head>
 <body>
@@ -42,7 +43,11 @@
         </div>
     </div>
 </div>
-<footer> {w:view footer}</footer>
+<footer class="col-sm-9 col-lg-10 text-center col-sm-offset-3 col-lg-offset-2 footer-dark">
+    <div class="container-fluid">
+        {w:view footer}
+    </div>
+</footer>
 </body>
 </html>
 

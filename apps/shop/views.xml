@@ -31,8 +31,11 @@
         <view action="/admin/Home.view" layout="AdminTemplate">
             <part file="/view/admin/home.php" name="body"/>
         </view>
-        <view action="/admin/Products.view" layout="AdminTemplate">
+        <view action="/admin/product/ViewList.view" layout="AdminTemplate">
             <part file="/view/admin/product/index.php" name="body"/>
+        </view>
+        <view action="/admin/product/Create.view" layout="AdminTemplate">
+            <part file="/view/admin/product/create.php" name="body"/>
         </view>
     </views>
 </viewConfig>

@@ -56,7 +56,14 @@
         <pattern>/admin/products</pattern>
         <action>\apps\shop\controller\admin\product\ViewProducts</action>
         <views>
-            <view action="/admin/Products.view" on="success"/>
+            <view action="/admin/product/ViewList.view" on="success"/>
+        </views>
+    </controller>
+    <controller>
+        <pattern>/admin/product/create</pattern>
+        <action>\apps\shop\controller\admin\product\CreateProduct</action>
+        <views>
+            <view action="/admin/product/Create.view" on="success"/>
         </views>
     </controller>
 </appMapping>

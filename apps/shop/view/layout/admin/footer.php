@@ -1,1 +1,1 @@
-<p>Christmas Shop Copyright</p>
+Christmas Shop Copyright

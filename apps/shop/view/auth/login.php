@@ -10,14 +10,14 @@
                 <form method="post" name="LoginFrm" class="form-horizontal"
                       id="LoginFrm">
                     <div class="form-group">
-                        <label for="username" class="checkbox-inline col-sm-4">Email/SĐT</label>
+                        <label for="username" class="checkbox-inline col-sm-4 required">Email/SĐT</label>
                         <div class="col-sm-8">
                             <input class="form-control" name="username"
                                    id="username" title="Username">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="checkbox-inline col-sm-4">Mật
+                        <label for="password" class="checkbox-inline col-sm-4 required">Mật
                             khẩu</label>
                         <div class="col-sm-8">
                             <input type="password" class="form-control"

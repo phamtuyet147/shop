@@ -46,7 +46,31 @@ footer {
     color: #fff;
 }
 
-.brand-circle:hover{
+.brand-circle:hover {
     background: #33b0f3;
     color: #fff
+}
+
+.required:after {
+    content: ' *';
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.has-error .tooltip-inner {
+    background: #c15d5e;
+}
+
+.has-error .tooltip-arrow {
+    border-top-color: #c15d5e !important;
+}
+
+.footer-dark{
+    background: #373737;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.float-alert{
+
 }

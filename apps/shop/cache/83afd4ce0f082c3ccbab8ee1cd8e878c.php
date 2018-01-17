@@ -1,83 +1,160 @@
 <!DOCTYPE html>
-<html lang="vi"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content="footer, address, phone, icons"><title>Christmas Store</title><!-- CSS --><link rel="stylesheet" href="/resources/css/font-awesome.min.css"><link rel="stylesheet" href="/resources/css/style.css"><!-- JS --><script src="/resources/js/jquery-3.2.1.min.js"></script><script language="javascript" src="/resources/js/common.js"></script><script language="javascript" src="/resources/js/custom.js"></script></head><body>
-<header><?php /**
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="footer, address, phone, icons"/>
+    <title>Christmas Store</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/resources/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/resources/css/style.css"/>
+
+    <!-- JS -->
+    <script src="/resources/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript"
+            src="/resources/js/bootstrap.min.js"></script>
+    <script language="javascript" src="/resources/js/common.js"></script>
+    <script language="javascript" src="/resources/js/custom.js"></script>
+</head>
+<body>
+<header>
+    <?php
+/**
  * @var \apps\shop\model\object\Category[] $categories
  */
-?><div class="row bg-danger">
-    <div class="col-3">
-        <div class="img">
-            <img src="/resources/images/nav_logo.png"></div>
-    </div>
-    <form action="#" class="col-4">
-        <div class="col-7">
-            <input class="input" type="text" placeholder="Chọn sản phẩm cần tìm" name="search"></div>
-        <button id="btn" class="btn" type="submit"><i class="fa fa-search" aria-hidden="true">search</i>
-        </button>
-    </form>
-    <div class="col-3 text-right">
-        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-        <img src=""><a href="">Đăng nhập</a>
+?>
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1>Christmas Store</h1>
+        <p>Chuyên cung cấp sỉ & lẻ các sản phẩm đón Noel</p>
     </div>
 </div>
-<div class="row bg-success">
-    <?php $wActionObject = new \apps\shop\controller\web\NavGeneratorAction(new \core\utils\HTTPRequest(), new \core\utils\HTTPResponse()); $wActionObject->doGet(new \core\utils\HTTPRequest(), new \core\utils\HTTPResponse(), new \core\app\AppView(new \core\utils\HTTPRequest(), new \core\utils\HTTPResponse()))?>
-</div>
-</header><div class="link">
-    <a href=""></a>
-</div>
-<div class="slider">
+<nav class="navbar navbar-default navbar-christmas">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Trang chủ</a></li>
+                <?php $wActionObject = new \apps\shop\controller\web\NavGeneratorAction(new \core\utils\HTTPRequest(), new \core\utils\HTTPResponse()); $wActionObject->doGet(new \core\utils\HTTPRequest(), new \core\utils\HTTPResponse(), new \core\app\AppView(new \core\utils\HTTPRequest(), new \core\utils\HTTPResponse()))?>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <?php $wActionObject = new \apps\shop\controller\web\FetchCustomer(new \core\utils\HTTPRequest(), new \core\utils\HTTPResponse()); $wActionObject->doGet(new \core\utils\HTTPRequest(), new \core\utils\HTTPResponse(), new \core\app\AppView(new \core\utils\HTTPRequest(), new \core\utils\HTTPResponse()))?>
+                <li><a href="/view-cart"<i class="fa fa-shopping-cart"></i>
+                    Giỏ hàng</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</header>
+<div class="container-fluid">
+    <div class="col-sm-12">
+        <div class="alert alert-danger alert-dismissable fade in <?php echo empty($wError) ? 'hide' : '' ?>">
+            <a href="#" class="close" data-dismiss="alert"
+               aria-label="close">&times;</a> <strong
+                    id="w-error"><?php echo empty($wError) ? ''
+                : $wError ?></strong></div>
+        <div class="alert alert-success alert-dismissable fade <?php echo empty($wSuccess) ? 'hide' : '' ?>">
+            <a href="#" class="close" data-dismiss="alert"
+               aria-label="close">&times;</a> <strong
+                    id="w-success"><?php echo empty($wSuccess) ? ''
+                : $wSuccess ?></strong></div>
+    </div>
+    <div class="col-sm-12">
+        <div id="shopSlide" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#shopSlide" data-slide-to="0" class="active"></li>
+        <li data-target="#shopSlide" data-slide-to="1"></li>
+        <li data-target="#shopSlide" data-slide-to="2"></li>
+        <li data-target="#shopSlide" data-slide-to="3"></li>
+    </ol>
 
-    <!-- Full-width images with number and caption text -->
-    <div class="mySlides fade">
-        <div class="numbertext">1 / 4</div>
-        <img class="img-responsive" alt="Quà tặng giáng sinh" src="https://cdn-quatructuyen.r.worldssl.net/media/wysiwyg/quatt/banner-christmas.jpg" title="Quà tặng giáng sinh" style="width:100%"><div class="text">Caption Text</div>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="/resources/images/slide/1.jpg" alt="Quà tặng giáng sinh"/>
+        </div>
+        <div class="item">
+            <img src="/resources/images/slide/2.jpg" alt="Quà tặng giáng sinh"/>
+        </div>
+        <div class="item">
+            <img src="/resources/images/slide/3.jpg" alt="Quà tặng giáng sinh"/>
+        </div>
+        <div class="item">
+            <img src="/resources/images/slide/4.jpg" alt="Quà tặng giáng sinh"/>
+        </div>
     </div>
 
-    <div class="mySlides fade">
-        <div class="numbertext">2 / 4</div>
-        <img class="img-reponsive" alt="quà tặng giáng sinh" src="https://wallpaper.wiki/wp-content/uploads/2017/05/Christmas-Wallpaper-HD-Download-Desntop.jpg"><div class="text">Caption Two</div>
-    </div>
-
-    <div class="mySlides fade">
-        <div class="numbertext">3 / 4</div>
-        <img class="img-reponsive" alt="quà tặng giáng sinh" src="https://lh3.ggpht.com/y9Sqq9XPPetLcYitxTJXmvPaIFU0vQ20JudZSWiweDfaNV6uV2xT3lieZpJTeVCMRCk=h900"><div class="text">Caption Three</div>
-    </div>
-    <div class="mySlides fade">
-        <div class="numbertext">4/ 4</div>
-        <img class="img-reponsive" alt="Quà tặng giáng sinh" src="https://s-media-cache-ak0.pinimg.com/originals/45/93/6e/45936e18560b41afa65d53089e441dbb.jpg"><div class="text">Caption Four</div>
-    </div>
-
-    <!-- Next and previous buttons -->
-    <a class="prev" onclick="plusSlides(-1)">❮</a>
-    <a class="next" onclick="plusSlides(1)">❯</a>
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#shopSlide" data-slide="prev">
+        <i class="fa fa-angle-left"></i>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#shopSlide" data-slide="next">
+        <i class="fa fa-angle-right"></i>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
-<br><!-- The dots/circles --><div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
 </div>
-<footer class="footer"><div class="contact">
-    <b>GIẢI ĐÁP THÔNG TIN.</b><br><p>Liên hệ : Trường đại học công nghệ thông tin , Khu phố 6, phường Linh
+<footer class="container-fluid">
+    <div class="col-sm-4">
+    <b>GIẢI ĐÁP THÔNG TIN.</b><br>
+    <p>Liên hệ : Trường đại học công nghệ thông tin , Khu phố 6, phường Linh
         Trung ,quận Thủ Đức, tp. HCM</p>
     <p>Số điện thoại : 1900-82234-4754</p>
     <a href="">Hướng dấn đổi trả.</a>
 </div>
-<div class="information">
-    <b>MERY CHISTHMUS STORE</b>
-    <p>Cửa hàng của chúng tôi rất vui lòng được phục vụ quý khách.
+<div class="col-sm-4">
+    <p>
+        <a href="#" class="brand-circle">
+            <i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="#" class="brand-circle">
+            <i class="fa fa-google-plus" aria-hidden="true"></i></a>
+        <a href="#" class="brand-circle">
+            <i class="fa fa-twitter" aria-hidden="true"></i></a>
     </p>
+    <form class="form-inline">Get deals:
+        <input type="email" class="form-control" size="50"
+               placeholder="Email Address">
+        <button type="button" class="btn btn-danger">Sign Up</button>
+    </form>
 </div>
-<div class="social">
-    <b> CÁC CỔNG THÔNG TIN CHÍNH CỦA CỬA HÀNG .</b><br><i class="fa fa-facebook-official" aria-hidden="true"></i><br><p>Facebook</p>
-    <i class="fa fa-envelope-o" aria-hidden="true"></i><br><p>twiter </p>
-    <i class="fa fa-twitter" aria-hidden="true"></i><br><p>Gmail</p>
-</div>
-<div class="logo">
-    <img src="/resources/images/nav_logo.png"><b>HỆ THỐNG CÁC CỬA HÀNG :</b>
-    <ul><li>Cơ sở 1 : Khu phố 6, phường Linh Trung ,quận Thủ Đức, tp. HCM</li>
+<div class="col-sm-4">
+    <img src="/resources/images/nav_logo.png">
+    <b>HỆ THỐNG CÁC CỬA HÀNG :</b>
+    <ul>
+        <li>Cơ sở 1 : Khu phố 6, phường Linh Trung ,quận Thủ Đức, tp. HCM</li>
         <li>Cơ sở 2 : Khu phố 6, phường Linh Trung ,quận Thủ Đức, tp. HCM</li>
         <li>Cơ sở 3 : Khu phố 6, phường Linh Trung ,quận Thủ Đức, tp. HCM</li>
         <li>Cơ sở 4 : Khu phố 6, phường Linh Trung ,quận Thủ Đức, tp. HCM</li>
-    </ul></div>
-</footer></body></html>
+    </ul>
+</div>
+</footer>
+                <script type="text/javascript">
+                WValidate.setForms([]);
+                var EXTERNAL_FRAGMENT;
+                WValidate.setDefaultMessage({
+    "required": "<?php echo _('Field (1) is required')?>",
+    "numeric": "<?php echo _('Field (1) is not a numeric')?>",
+    "min": "<?php echo _('Field (1) must be greater than (2)')?>",
+    "max": "<?php echo _('Field (1) must be less than (2)')?>",
+    "min-length": "<?php echo _('Field (1) must be at least (2) characters')?>",
+    "max-length": "<?php echo _('Field (1) could not be longer than (2) characters')?>",
+    "pattern": "<?php echo _('Field (1) is not valid')?>",
+    "match": "<?php echo _('Fields (1) and (2) are not match')?>",
+    "default": "<?php echo _('Fields (1) is not valid')?>"
+});
+                WValidate.setCustomRules("<wValidator xmlns=\"http:\/\/linhnv.xyz\/w.validator\">\n\n    <rule>\n        <key>phone<\/key>\n        <pattern>\/^\\+?[0-9]{10,12}$\/<\/pattern>\n    <\/rule>\n    <rule>\n        <key>email<\/key>\n        <pattern>\/^[a-zA-Z0-9-_.]+@[a-zA-Z0-9-_.]+\\.[a-z]{2,4}$\/i<\/pattern>\n    <\/rule>\n    <rule>\n        <key>ip<\/key>\n        <pattern>\/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$\/gm<\/pattern>\n    <\/rule>\n\n<\/wValidator>");
+                </script></body>
+</html>

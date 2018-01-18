@@ -7,12 +7,15 @@ WValidate.raiseError = function (formName, fieldName, message) {
 };
 
 $(document).ready(function () {
-    CKEDITOR.replaceAll('rich-text-editor');
-    CKEDITOR.on('instanceReady', function (event) {
-        var editor = event.editor;
-        editor.on('change', function () {
-            // Sync textarea
-            this.updateElement();
-        });
-    });
+    $('.btn-add-to-cart').on('click', function (event) {
+        event.preventDefault();
+        var id = $(this).attr('href');
+        $.post('/add-to-cart', {id: id}, function (response) {
+            if (response.hasOwnProperty('error') && response.error) {
+                alert('Error occurred!');
+                return false;
+            }
+            $('#in-cart').html(response.data);
+        }, 'json')
+    })
 });

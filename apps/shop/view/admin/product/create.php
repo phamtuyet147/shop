@@ -1,7 +1,22 @@
 <h1>Tạo sản phẩm mới</h1>
 <hr>
-<form class="form-horizontal" method="post" enctype="multipart/form-data" name="CreateProductFrm">
+<form class="form-horizontal" method="post" enctype="multipart/form-data"
+      name="CreateProductFrm">
     <div class="col-sm-5">
+        <div class="form-group">
+            <label class="required col-sm-3" for="id_category">Danh mục</label>
+            <div class="col-sm-9">
+                <select name="id_category" class="form-control"
+                        id="id_category">
+                    <option value="">-- Chọn --</option>
+                    {w:func foreach ($categories as $category) { }
+                    <option value="{w:var category->getId() }">
+                        {w:text category->getTitle() }
+                    </option>
+                    {/w:func}
+                </select>
+            </div>
+        </div>
         <div class="form-group">
             <label class="required col-sm-3" for="title">Tên sản
                 phẩm</label>
@@ -47,3 +62,4 @@
     </div>
 </form>
 <script src="/resources/ckeditor/ckeditor.js"></script>
+<script src="/resources/js/initCKEditor.js"></script>

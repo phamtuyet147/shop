@@ -39,4 +39,28 @@ class ShopSetting
     {
         return self::$SETTING->get('limit.comment.per.page');
     }
+
+    /**
+     * @return null
+     */
+    public static function getAllowedProductImageExt()
+    {
+        return self::$SETTING->get('product.image.ext');
+    }
+
+    /**
+     * @return null
+     */
+    public static function getAllowedProductImageType()
+    {
+        return self::$SETTING->get('product.image.type');
+    }
+
+    /**
+     * @return null
+     */
+    public static function getUploadDir()
+    {
+        return self::$SETTING->get('product.image.upload.dir');
+    }
 }

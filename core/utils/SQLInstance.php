@@ -109,7 +109,7 @@ class SQLInstance
     public function getPreparedStatement($key)
     {
         try {
-            $query = self::getStatement($key);
+            $query = (string)self::getStatement($key);
             $prepareStatement = new PrepareStatement($query);
 
             return $prepareStatement;

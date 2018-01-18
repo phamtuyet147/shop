@@ -42,7 +42,35 @@
         <action>\apps\shop\controller\web\category\ViewCategory</action>
         <bind>short_tag</bind>
         <views>
+            <view action="/404.view" on="error"/>
             <view action="/Category.view" on="success"/>
+        </views>
+    </controller>
+    <controller>
+        <pattern>/product/*</pattern>
+        <action>\apps\shop\controller\web\product\ViewProduct</action>
+        <bind>short_tag</bind>
+        <views>
+            <view action="/404.view" on="error"/>
+            <view action="/product/Detail.view" on="success"/>
+        </views>
+    </controller>
+    <controller>
+        <pattern>/search</pattern>
+        <action>\apps\shop\controller\admin\product\SearchProduct</action>
+        <views>
+            <view action="/SearchResult.view" on="success"/>
+        </views>
+    </controller>
+    <controller>
+        <pattern>/add-to-cart</pattern>
+        <action>\apps\shop\controller\web\cart\AddToCart</action>
+    </controller>
+    <controller>
+        <pattern>/view-cart</pattern>
+        <action>\apps\shop\controller\web\cart\ViewCart</action>
+        <views>
+            <view action="/ViewCart.view" on="success"/>
         </views>
     </controller>
     <controller>
@@ -61,9 +89,12 @@
     </controller>
     <controller>
         <pattern>/admin/product/create</pattern>
+        <form>CreateProductFrm</form>
+        <error>/admin/product/create</error>
         <action>\apps\shop\controller\admin\product\CreateProduct</action>
         <views>
             <view action="/admin/product/Create.view" on="success"/>
+            <view action="/admin/products" on="created" redirect="true"/>
         </views>
     </controller>
 </appMapping>

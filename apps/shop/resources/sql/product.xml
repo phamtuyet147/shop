@@ -9,4 +9,16 @@
         LIMIT :from, :limit
     </getProductsByConditions>
 
+    <createProduct>
+        INSERT INTO products (id_category, title, short_tag, price, short_desc, `desc`, thumbnail, dt_create, dt_modified)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    </createProduct>
+
+    <getProductByShortTag>
+        SELECT *
+        FROM products
+        WHERE short_tag = ?
+        LIMIT 1
+    </getProductByShortTag>
+
 </statements>

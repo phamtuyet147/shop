@@ -388,7 +388,7 @@ final class ViewConfig
                     }
                     if ($inputTag == 'textarea') {
                         if (!preg_match(
-                            '/<textarea.*?>.+</s', $input,
+                            '/<textarea[^>]>.+</s', $input,
                             $matches
                         )
                         ) {

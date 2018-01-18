@@ -13,6 +13,9 @@
         </layout>
     </layouts>
     <views>
+        <view action="/404.view" layout="MainTemplate">
+            <part file="/view/404.php" name="body"/>
+        </view>
         <view action="/auth/Login.view" layout="MainTemplate">
             <part file="/view/auth/login.php" name="body"/>
         </view>
@@ -27,6 +30,15 @@
         </view>
         <view action="/Category.view" layout="MainTemplate">
             <part file="/view/category/index.php" name="body"/>
+        </view>
+        <view action="/ViewCart.view" layout="MainTemplate">
+            <part file="/view/cart/index.php" name="body"/>
+        </view>
+        <view action="/product/Detail.view" layout="MainTemplate">
+            <part file="/view/product/index.php" name="body"/>
+        </view>
+        <view action="/SearchResult.view" layout="MainTemplate">
+            <part file="/view/product/search.php" name="body"/>
         </view>
         <view action="/admin/Home.view" layout="AdminTemplate">
             <part file="/view/admin/home.php" name="body"/>

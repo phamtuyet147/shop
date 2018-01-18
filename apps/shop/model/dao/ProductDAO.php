@@ -11,8 +11,10 @@ namespace apps\shop\model\dao;
 
 use apps\shop\model\object\Product;
 use apps\shop\util\ShopSetting;
+use core\utils\DateUtil;
 use core\utils\DBUtils;
 use core\utils\SQLInstance;
+use core\utils\StringUtils;
 
 class ProductDAO
 {
@@ -50,8 +52,12 @@ class ProductDAO
             $conditions['data'][] = $options['id_category'];
         }
         if (!empty($options['keyword'])) {
-            $conditions['statement'][] = "title LIKE '%?%'";
-            $conditions['data'][] = $options['keyword'];
+            $conditions['statement'][] = "title LIKE ? OR short_tag LIKE ?";
+            $keyword = $options['keyword'];
+            $shortTag = StringUtils::convertStringToURL($keyword);
+            $shortTag = str_replace('-', '%', $shortTag);
+            $conditions['data'][] = "%{$keyword}%";
+            $conditions['data'][] = "%$shortTag%";
         }
         if (!empty($options['price_min'])) {
             $conditions['statement'][] = "price >= ?";
@@ -117,5 +123,56 @@ class ProductDAO
         }
 
         return $products;
+    }
+
+    /**
+     * @param $categoryid
+     * @param $title
+     * @param $price
+     * @param $shortTag
+     * @param $shortDesc
+     * @param $desc
+     * @param $thumbnail
+     *
+     * @return bool|\mysqli_result|\PDOStatement
+     */
+    public static function createProduct($categoryid, $title, $shortTag, $price,
+        $shortDesc, $desc, $thumbnail
+    ) {
+        $now = DateUtil::getCurrentDateTime();
+        $stmt = self::$STATEMENTS->getPreparedStatement('createProduct');
+        $result = $stmt->execute(
+            array($categoryid, $title, $shortTag, $price, $shortDesc, $desc,
+                  $thumbnail, $now, $now)
+        );
+
+        return $result;
+    }
+
+    /**
+     * @param $shortTag
+     *
+     * @return Product|bool
+     */
+    public static function getProductByShortTag($shortTag)
+    {
+        $stmt = self::$STATEMENTS->getPreparedStatement('getProductByShortTag');
+        $result = $stmt->execute(array($shortTag));
+
+        $row = $result->fetch_assoc();
+        if (!$row) {
+            return false;
+        }
+
+        return new Product(
+            $row['id'], $row['id_category'], $row['title'],
+            $row['short_tag'], $row['price'], $row['short_desc'],
+            $row['desc'], $row['thumbnail'], $row['dt_create'],
+            $row['dt_modified']
+        );
+    }
+
+    public static function getProductsInList($IDs){
+        $stmt = self::$STATEMENTS->getStatement('getProductsInList');
     }
 }

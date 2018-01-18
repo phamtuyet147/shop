@@ -24,6 +24,10 @@
     {w:view header}
 </header>
 <div class="container-fluid">
+    <div class="float-cart">
+        <a href="/view-cart"><i class="fa fa-shopping-cart"></i></a>
+        <span id="in-cart" class="no-product">{w:action \apps\shop\controller\web\cart\GetCurrentCartState}</span>
+    </div>
     <div class="col-sm-12">
         <div class="alert alert-danger alert-dismissable fade in {w:func echo empty($wError) ? 'hide' : '' }">
             <a href="#" class="close" data-dismiss="alert"

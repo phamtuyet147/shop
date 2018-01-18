@@ -83,7 +83,7 @@ abstract class ConnectDatabaseInfo
      */
     protected final static function getPort()
     {
-        return self::$PORT;
+        return (int)self::$PORT;
     }
 
     /**

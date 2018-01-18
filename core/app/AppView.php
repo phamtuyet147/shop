@@ -89,6 +89,7 @@ class AppView implements AppController
         if (!$cachedView) {
             throw new Exception('Could not load View content');
         }
+        extract($request->getAttributes());
         /** @noinspection PhpIncludeInspection */
         include $cachedView;
         exit();

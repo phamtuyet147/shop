@@ -274,8 +274,7 @@ final class FileUtils
         array $typeAllowed
     ) {
         $name = $file['name'];
-        $fileNameExploded = explode('.', $name);
-        $ext = end($fileNameExploded);
+        $ext = pathinfo($name, PATHINFO_EXTENSION);
         if (!in_array($ext, $extensionsAllowed)) {
             return false;
         }

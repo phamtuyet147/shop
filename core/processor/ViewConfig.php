@@ -55,7 +55,7 @@ final class ViewConfig
         $appViews = Cache::get(self::CACHE_VIEWS);
         if (!$appViews) {
             $appViews = FileUtils::readMultipleXMLFile(
-                self::$viewConfigFiles, 'views', AppInfo::$BASE_PATH
+                self::$viewConfigFiles, 'view', AppInfo::$BASE_PATH
             );
             Cache::set(self::CACHE_VIEWS, $appViews->asXML());
         } else {
@@ -271,186 +271,160 @@ final class ViewConfig
         $shortTags = AppConfiguration::$FW_CONFIG['shortTag'];
         $webForms = array();
         $prefix = $shortTags['prefix'];
-        $dom = new \DOMDocument("1.0", "UTF-8");
-        libxml_use_internal_errors(true);
-        $dom->loadHTML(mb_convert_encoding($context, 'HTML-ENTITIES', 'UTF-8'));
-        $forms = $dom->getElementsByTagName('form');
-        /**
-         * @var \DOMNodeList $forms
-         * @var \DOMElement  $form
-         */
+        $hasForm = preg_match_all(
+            '/<form.*?<\/form>/s',
+            $context, $forms
+        );
+        if (!$hasForm) {
+            return $context;
+        }
+        $forms = $forms[0];
         foreach ($forms as $form) {
-            $formName = $form->getAttribute('name');
-            if (empty($formName)) {
+            if (!preg_match(
+                '/<form[^>]+name="(\w+)"[^>]?/s', $form, $matches
+            )
+            ) {
                 continue;
             }
+            $replaceForm = $form;
+            $formName = $matches[1];
             $fields = AppValidator::getFields($formName);
             if (!$fields) {
                 $fields = array();
             }
-            $webForms[$formName] = $fields;
+            $webForms[$formName] = $fields->asXML();
 
             //Auto recover form field data
 
             //Auto recover form input data
-            $inputs = $form->getElementsByTagName('input');
-            /**
-             * @var \DOMNameList $inputs
-             * @var \DOMElement  $input
-             */
-            foreach ($inputs as $input) {
-                $inputName = $input->getAttribute('name');
-                if (empty($inputName)) {
-                    continue;
-                }
-                $inputType = $input->getAttribute('type');
-                if (empty($inputType)) {
-                    $inputType = 'text';
-                }
-                $field = AppValidator::getField(
-                    $formName, $inputName
-                );
-                $condition = array();
-                if (!empty($field['condition'])) {
-                    $condition = explode(',', (string)$field['condition']);
-                }
-                if (in_array('required', $condition)) {
-                    $input->setAttribute('required', 'required');
-                }
-                $recovery = true;
-                if (!empty($field['recover'])) {
-                    $recovery = StringUtils::toBoolean(
-                        (string)$field['recover']
+            $hasInput = preg_match_all(
+                '/<(input|textarea}select).*?>/s',
+                $context, $matchedInputs
+            );
+            if ($hasInput) {
+                $inputs = $matchedInputs[0];
+                foreach ($inputs as $index => $input) {
+                    $inputTag = $matchedInputs[1][$index];
+                    if (!preg_match(
+                        "/<{$inputTag}[^>]+name=\"(\w+)\"[^>]?/s", $input,
+                        $matches
+                    )
+                    ) {
+                        continue;
+                    }
+                    $replaceStr = $input;
+                    $inputName = $matches[1];
+                    $field = AppValidator::getField(
+                        $formName, $inputName
                     );
-                }
-                if ($recovery) {
-                    if ($inputType != 'radio' && $inputType != 'checkbox') {
-                        $input->setAttribute(
-                            'value',
-                            '{' . $prefix . ':' . $shortTags['formData'] . ' '
-                            . $formName . '.' . $inputName . '}'
+                    $condition = array();
+                    if (!empty($field['condition'])) {
+                        $condition = explode(
+                            ',', (string)$field['condition']
                         );
-                    } else {
-                        $inputValue = $input->getAttribute('value');
-                        if (empty($inputValue)) {
-                            $inputValue = 'on';
+                    }
+                    if (in_array('required', $condition)) {
+                        if (!preg_match(
+                            "/<{$inputTag}[^>]+required[^>]?/s", $input
+                        )
+                        ) {
+                            $replaceStr = str_replace(
+                                '>', ' required="required">', $input
+                            );
                         }
-                        $input->setAttribute(
-                            'wOps',
-                            '{' . $prefix . ':' . $shortTags['opsValue'] . ' '
-                            . $formName . '.' . $inputName . ' ' . $inputValue
-                            . '}'
+                    }
+                    $recovery = true;
+                    if (!empty($field['recover'])) {
+                        $recovery = StringUtils::toBoolean(
+                            (string)$field['recover']
                         );
                     }
-                }
-            }
-
-            //Auto recover form textarea data
-            $inputs = $form->getElementsByTagName('textarea');
-            /**
-             * @var \DOMNameList $inputs
-             * @var \DOMElement  $input
-             */
-            foreach ($inputs as $input) {
-                $inputName = $input->getAttribute('name');
-                if (empty($inputName)) {
-                    continue;
-                }
-                $field = AppValidator::getField(
-                    $formName, $inputName
-                );
-                $condition = array();
-                if (!empty($field['condition'])) {
-                    $condition = explode(',', (string)$field['condition']);
-                }
-                if (in_array('required', $condition)) {
-                    $input->setAttribute('required', 'required');
-                }
-                $recovery = true;
-                if (!empty($field['recover'])) {
-                    $recovery = StringUtils::toBoolean(
-                        (string)$field['recover']
-                    );
-                }
-                if (!$recovery) {
-                    continue;
-                }
-
-                $node = $dom->createTextNode(
-                    '{' . $prefix . ':' . $shortTags['formData'] . ' '
-                    . $formName . '.' . $inputName . '}'
-                );
-                $input->appendChild($node);
-            }
-
-            //Auto recover form textarea data
-            $inputs = $form->getElementsByTagName('select');
-            /**
-             * @var \DOMNameList $inputs
-             * @var \DOMElement  $input
-             */
-            foreach ($inputs as $input) {
-                $inputName = $input->getAttribute('name');
-                if (empty($inputName)) {
-                    continue;
-                }
-                $field = AppValidator::getField(
-                    $formName, $inputName
-                );
-                $condition = array();
-                if (!empty($field['condition'])) {
-                    $condition = explode(',', (string)$field['condition']);
-                }
-                if (in_array('required', $condition)) {
-                    $input->setAttribute('required', 'required');
-                }
-                $recovery = false;
-                if (!empty($field['recover'])) {
-                    $recovery = StringUtils::toBoolean(
-                        (string)$field['recover']
-                    );
-                }
-                if (!$recovery) {
-                    continue;
-                }
-
-                $options = $input->getElementsByTagName('option');
-                /**
-                 * @var \DOMNodeList $options
-                 * @var \DOMElement  $option
-                 */
-                foreach ($options as $option) {
-                    $inputValue = $option->getAttribute('value');
-                    if (empty($inputValue)) {
-                        $inputValue = 'on';
+                    if (!$recovery) {
+                        continue;
                     }
-                    $option->setAttribute(
-                        'wOps',
-                        '{' . $prefix . ':' . $shortTags['selectValue'] . ' '
-                        . $formName . '.' . $inputName . ' ' . $inputValue . '}'
+                    if ($inputTag == 'input') {
+                        $inputType = 'text';
+                        if (preg_match(
+                            '/<input[^>]+type="(\w+)"[^>]?/s', $input, $matches
+                        )
+                        ) {
+                            $inputType = $matches[1];
+                        }
+                        if ($inputType != 'radio'
+                            && $inputType != 'checkbox'
+                        ) {
+                            if (!preg_match(
+                                '/<input[^>]+value=[^>]?/s', $input
+                            )
+                            ) {
+                                $replaceStr = str_replace(
+                                    '>',
+                                    " value=\"<?php echo \core\utils\WForm::getFormArgument('{$formName}', '{$inputName}')?>\">",
+                                    $replaceStr
+                                );
+                            }
+                        } else {
+                            $inputValue = 'on';
+                            if (preg_match(
+                                '/<input[^>]+value=\"(.*?)\"[^>]?/s',
+                                $input,
+                                $matches
+                            )
+                            ) {
+                                $inputValue = $matches[1];
+                            }
+                            if (!preg_match(
+                                '/<input[^>]+checked[^>]?/s', $input,
+                                $matches
+                            )
+                            ) {
+                                $replaceStr = str_replace(
+                                    '>',
+                                    " value=\"<?php echo \core\utils\WForm::getFormArgument('{$formName}', '{$inputName}') == '{$inputValue}' ? 'checked' : ''?>\">",
+                                    $replaceStr
+                                );
+                            }
+                        }
+                    }
+                    if ($inputTag == 'textarea') {
+                        if (!preg_match(
+                            '/<textarea[^>]>.+</s', $input,
+                            $matches
+                        )
+                        ) {
+                            $replaceStr = str_replace(
+                                '>',
+                                "><?php echo \core\utils\WForm::getFormArgument('{$formName}', '{$inputName}') ?>",
+                                $replaceStr
+                            );
+                        }
+                    }
+                    /*if ($inputTag == 'select') {
+                        $options = $input->getElementsByTagName('option');
+                        foreach ($options as $option) {
+                            $inputValue = $option->getAttribute('value');
+                            if (empty($inputValue)) {
+                                $inputValue = 'on';
+                            }
+                            $option->setAttribute(
+                                'wOps',
+                                '{' . $prefix . ':' . $shortTags['selectValue']
+                                . ' '
+                                . $formName . '.' . $inputName . ' '
+                                . $inputValue
+                                . '}'
+                            );
+                        }
+                    }*/
+                    $replaceForm = str_replace(
+                        $input, $replaceStr, $replaceForm
                     );
                 }
-            }
-
-            //Append form name field
-            $node = $dom->createElement(
-                'input'
-            );
-            $node->setAttribute('name', 'wFrmToken');
-            $node->setAttribute('type', 'hidden');
-            $node->setAttribute(
-                'value', '{' . $prefix . ':' . $shortTags['formToken'] . ' '
-                . $formName . '}'
-            );
-            $form->appendChild($node);
-            $fields = AppValidator::getFields($formName);
-            if (!$fields) {
-                continue;
+                $context = str_replace($form, $replaceForm, $context);
             }
         }
 
-        $defaultMessageData = json_encode
-        (
+        $defaultMessageData = json_encode(
             AppValidator::getDefaultMessages(), 128
         );
         $customRules = AppValidator::getCustomerRules();
@@ -458,26 +432,18 @@ final class ViewConfig
         $customRules = $customRulesDom->ownerDocument->saveXML(
             $customRulesDom->ownerDocument->documentElement
         );
-        $customRules = htmlspecialchars(json_encode($customRules));
+        $customRules = json_encode($customRules, 128);
         $webForms = json_encode($webForms, 128);
         $scriptText
-            = <<<JS
+            = <<<HTML
+                <script type="text/javascript">
                 WValidate.setForms({$webForms});
                 var EXTERNAL_FRAGMENT;
                 WValidate.setDefaultMessage({$defaultMessageData});
                 WValidate.setCustomRules({$customRules});
-JS;
-
-        $script = $dom->createElement('script', $scriptText);
-        $body = $dom->getElementsByTagName('body');
-        /**
-         * @var \DOMElement $body
-         */
-        $body = $body[0];
-        $body->appendChild($script);
-
-        $context = urldecode(html_entity_decode($dom->saveHTML()));
-        $context = preg_replace("/wOps=\"({.*?})\"/s", "$1", $context);
+                </script>
+HTML;
+        $context = str_replace('</body>', "{$scriptText}</body>", $context);
         return $context;
     }
 
@@ -497,8 +463,9 @@ JS;
      * 'function' => 'func'
      * @throws Exception
      */
-    private static function parseView($pageContext)
-    {
+    private
+    static function parseView($pageContext
+    ) {
         $pageContext = self::initFormValidation($pageContext);
 
         $shortTags = AppConfiguration::$FW_CONFIG['shortTag'];
@@ -653,13 +620,15 @@ JS;
     /**
      * @param mixed $cachedViewDirectory
      */
-    public static function setCachedViewDirectory($cachedViewDirectory)
-    {
+    public
+    static function setCachedViewDirectory($cachedViewDirectory
+    ) {
         self::$cachedViewDirectory = $cachedViewDirectory;
     }
 
-    private static function parseHashView($pagePath)
-    {
+    private
+    static function parseHashView($pagePath
+    ) {
         $filePath = explode('/', $pagePath);
         $fileName = array_pop($filePath);
         $fileName = HashUtil::getHash($fileName, 'md5') . '.php';
@@ -676,8 +645,9 @@ JS;
      *
      * @return array|bool|string
      */
-    public static function loadCachedView($pagePath)
-    {
+    public
+    static function loadCachedView($pagePath
+    ) {
         $filePath = self::parseHashView($pagePath);
         if (!file_exists($filePath)) {
             return false;
@@ -690,8 +660,9 @@ JS;
      * @param $pagePath
      * @param $context
      */
-    private static function storeCachedView($pagePath, $context)
-    {
+    private
+    static function storeCachedView($pagePath, $context
+    ) {
         $filePath = self::parseHashView($pagePath);
         FileUtils::writeTruncateFile($context, $filePath);
     }

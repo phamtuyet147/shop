@@ -133,13 +133,14 @@ final class AppRouting
         $pagePath = trim($pagePath, '/');
         $xpath
             = "//{$prefix}:controller[{$prefix}:pattern='{$pagePath}' or {$prefix}:pattern='/{$pagePath}']";
-        for ($i = count($pathContainers) - 1; $i >= 0; $i--) {
+        $pagePath = '';
+        foreach ($pathContainers as $pathContainer) {
             $controllers = $routes->xpath($xpath);
             if ($controllers) {
                 return $controllers[0];
             }
-            unset($pathContainers[$i]);
-            $pagePath = implode('/', $pathContainers) . '/*';
+            $pagePath = trim($pagePath, '*');
+            $pagePath .= "{$pathContainer}/*";
             $pagePath = trim($pagePath, '/');
             $xpath
                 = "//{$prefix}:controller[{$prefix}:pattern='{$pagePath}' or {$prefix}:pattern='/{$pagePath}'";
@@ -322,10 +323,9 @@ final class AppRouting
             );
         }
 
+        $controllerClass->doGet($request, $response, $appView);
         if ($request->isPost() && $request->getRealPagePath() == $pagePath) {
             $controllerClass->doPost($request, $response, $appView);
-        } else {
-            $controllerClass->doGet($request, $response, $appView);
         }
     }
 

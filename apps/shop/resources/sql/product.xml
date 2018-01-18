@@ -21,4 +21,10 @@
         LIMIT 1
     </getProductByShortTag>
 
+    <getProductsInList>
+        SELECT *
+        FROM products
+        WHERE id IN (:list)
+    </getProductsInList>
+
 </statements>

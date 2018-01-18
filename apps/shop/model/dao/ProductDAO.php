@@ -172,7 +172,22 @@ class ProductDAO
         );
     }
 
-    public static function getProductsInList($IDs){
+    public static function getProductsInList($IDs)
+    {
         $stmt = self::$STATEMENTS->getStatement('getProductsInList');
+        $stmt = str_replace(':list', implode(',', $IDs), $stmt);
+
+        $result = DBUtils::executeQuery($stmt);
+        $products = array();
+        while ($row = $result->fetch_assoc()) {
+            $products[] = new Product(
+                $row['id'], $row['id_category'], $row['title'],
+                $row['short_tag'], $row['price'], $row['short_desc'],
+                $row['desc'], $row['thumbnail'], $row['dt_create'],
+                $row['dt_modified']
+            );
+        }
+
+        return $products;
     }
 }

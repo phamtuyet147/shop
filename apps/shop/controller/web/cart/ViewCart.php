@@ -10,6 +10,7 @@ namespace apps\shop\controller\web\cart;
 
 
 use apps\shop\controller\BaseAction;
+use apps\shop\model\dao\ProductDAO;
 use core\app\AppView;
 use core\utils\HTTPRequest;
 use core\utils\HTTPResponse;
@@ -32,6 +33,8 @@ class ViewCart extends BaseAction
             $cart = array();
         }
 
+        $products = ProductDAO::getProductsInList($cart);
+        $request->setAttribute('products', $products);
         $appView->doView('success');
     }
 
